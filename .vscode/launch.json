@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "iPhone Simulator DEV",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "-d",
+                "iPhone",
+                "--dart-define",
+                "ENVIRONMENT=dev"
+            ]
+        },
+        {
+            "name": "iPhone Simulator PROD",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "-d",
+                "iPhone",
+                "--dart-define",
+                "ENVIRONMENT=prod"
+            ]
+        },
+        {
+            "name": "my phone DEV",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "-d",
+                "SM G780F",
+                "--dart-define",
+                "ENVIRONMENT=dev"
+            ]
+        },
+    ]
+}
