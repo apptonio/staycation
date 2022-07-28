@@ -1,3 +1,4 @@
+import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
 import './widgets/popular_locations.dart';
@@ -15,6 +16,9 @@ class HomeScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.more))
         ],
+        backgroundColor: Colors.white,
+        foregroundColor: ThemeColors.teal800,
+        elevation: 1,
       ),
       body: SafeArea(
           child:
