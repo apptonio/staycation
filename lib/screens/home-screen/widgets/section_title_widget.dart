@@ -13,12 +13,13 @@ class SectionTitle extends StatelessWidget {
         child: ListTile(
           title: Text(
             title,
-            style: const TextStyle(fontSize: 24),
+            style: textTheme.headline5,
           ),
           trailing: TextButton(
             onPressed: () {},
             child: Text("VIEW MORE",
-                style: TextStyle(color: ThemeColors.mint400, fontSize: 13)),
+                style: textTheme.button!
+                    .merge(TextStyle(color: ThemeColors.mint400))),
           ),
         ));
   }

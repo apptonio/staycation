@@ -19,11 +19,11 @@ class HomesGuestsLove extends StatelessWidget {
                     // I found it easier to add SizedBoxes, instead of padding
                     SizedBox(width: 22),
                     HomeCard(),
-                    SizedBox(width: 16),
+                    SizedBox(width: 27),
                     HomeCard(),
-                    SizedBox(width: 16),
+                    SizedBox(width: 27),
                     HomeCard(),
-                    SizedBox(width: 16),
+                    SizedBox(width: 27),
                     HomeCard()
                   ],
                 ))),

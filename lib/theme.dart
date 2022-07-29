@@ -85,9 +85,9 @@ final TextTheme textTheme = TextTheme(
     letterSpacing: 0.15,
   ),
   button: GoogleFonts.roboto(
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.4,
+    letterSpacing: 0.46,
     //textStyle: const TextStyle(fontFeatures:[FontFeature.enable('smcp')],
   ),
   caption: GoogleFonts.roboto(
@@ -103,16 +103,16 @@ final TextTheme textTheme = TextTheme(
 );
 
 ThemeData theme = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
-  appBarTheme: const AppBarTheme(
-    color: Colors.white,
+  scaffoldBackgroundColor: ThemeColors.white,
+  appBarTheme: AppBarTheme(
+    color: ThemeColors.white,
     elevation: 0,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(vertical: 8),
       primary: ThemeColors.mint400, // background (button) color
-      onPrimary: Colors.white, // foreground (text) color
+      onPrimary: ThemeColors.white, // foreground (text) color
       textStyle: textTheme.button,
     ),
   ),

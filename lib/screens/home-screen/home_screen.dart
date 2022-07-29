@@ -1,5 +1,7 @@
+import 'package:devcademy_flutter/assets.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import './widgets/popular_locations.dart';
 import './widgets/homes_guests_love.dart';
@@ -11,12 +13,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Staycation'),
+        title: Text('Staycation',
+            style: textTheme.headline6!
+                .merge(TextStyle(color: ThemeColors.teal800))),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.more))
+          IconButton(
+              onPressed: () {}, icon: SvgPicture.asset(Assets.icons.search)),
+          IconButton(
+              onPressed: () {}, icon: SvgPicture.asset(Assets.icons.more))
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: ThemeColors.white,
         foregroundColor: ThemeColors.teal800,
         elevation: 1,
       ),
@@ -27,22 +33,25 @@ class HomeScreen extends StatelessWidget {
                 children: const [PopularLocations(), HomesGuestsLove()])),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: SvgPicture.asset(
+                Assets.icons.home,
+                color: ThemeColors.mint500,
+              ),
               label: 'Home',
-              backgroundColor: Colors.teal),
+              backgroundColor: ThemeColors.mint500),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list),
+              icon: SvgPicture.asset(Assets.icons.list),
               label: 'My Bookings',
-              backgroundColor: Colors.teal),
+              backgroundColor: ThemeColors.mint500),
           BottomNavigationBarItem(
-              icon: Icon(Icons.place),
+              icon: SvgPicture.asset(Assets.icons.places),
               label: 'My Places',
-              backgroundColor: Colors.teal)
+              backgroundColor: ThemeColors.mint500)
         ],
         currentIndex: 0,
-        selectedItemColor: Colors.teal,
+        selectedItemColor: ThemeColors.mint500,
       ),
     );
   }

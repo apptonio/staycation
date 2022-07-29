@@ -30,7 +30,7 @@ class _Icons {
 }
 
 class _Images {
-  String tokyo = 'assets/images/Tokyo.png';
+  String london = 'assets/images/London.png';
   String sugar = 'assets/images/Sugar.png';
   String rating = 'assets/images/rating-mobile.png';
 }
