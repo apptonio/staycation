@@ -20,9 +20,12 @@ class HomeScreen extends StatelessWidget {
         foregroundColor: ThemeColors.teal800,
         elevation: 1,
       ),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-          child:
-              Column(children: const [PopularLocations(), HomesGuestsLove()])),
+        child: SingleChildScrollView(
+            child: Column(
+                children: const [PopularLocations(), HomesGuestsLove()])),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

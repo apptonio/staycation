@@ -1,19 +1,25 @@
+import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
 class SectionTitle extends StatelessWidget {
-  const SectionTitle({Key? key,
-  this.title = 'Title'}) : super(key: key);
+  const SectionTitle({Key? key, this.title = ''}) : super(key: key);
 
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(title),
-      trailing: TextButton(
-        onPressed: () {},
-        child: const Text("READ MORE"),
-      ),
-    );
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        child: ListTile(
+          title: Text(
+            title,
+            style: const TextStyle(fontSize: 24),
+          ),
+          trailing: TextButton(
+            onPressed: () {},
+            child: Text("VIEW MORE",
+                style: TextStyle(color: ThemeColors.mint400, fontSize: 13)),
+          ),
+        ));
   }
 }

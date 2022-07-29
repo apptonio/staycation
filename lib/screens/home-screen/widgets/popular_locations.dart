@@ -8,12 +8,14 @@ class PopularLocations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Column(
+      
       children: [
-        const SectionTitle(),
+        const SectionTitle(title: 'Popular locations'),
         SizedBox(
-          height: 400,
+          height: 370,
           child: GridView.count(
           crossAxisCount: 2,
+          primary: true,
           children: const [
             LocationStack(),
             LocationStack(),
