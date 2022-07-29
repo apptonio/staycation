@@ -14,7 +14,9 @@ class PopularLocations extends StatelessWidget {
           height: 370,
           child: GridView.count(
             crossAxisCount: 2,
-            primary: true,
+            padding: const EdgeInsets.all(8.0),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
             children: const [
               LocationStack(),
               LocationStack(),

@@ -17,13 +17,13 @@ class HomesGuestsLove extends StatelessWidget {
                 child: Row(
                   children: const [
                     // I found it easier to add SizedBoxes, instead of padding
-                    SizedBox(width: 18),
+                    SizedBox(width: 22),
                     HomeCard(),
-                    SizedBox(width: 10),
+                    SizedBox(width: 16),
                     HomeCard(),
-                    SizedBox(width: 10),
+                    SizedBox(width: 16),
                     HomeCard(),
-                    SizedBox(width: 10),
+                    SizedBox(width: 16),
                     HomeCard()
                   ],
                 ))),
