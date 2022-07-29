@@ -13,6 +13,7 @@ class HomeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // I found it easier to add SizedBoxes, instead of padding
                 Image.asset(Assets.images.sugar),
                 const SizedBox(height: 10),
                 const Text('Sugar & Spice Apartments',

@@ -14,7 +14,16 @@ class LocationStack extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(8.0, 16.0, 0.0, 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [Text('London', style: TextStyle(color: Colors.white),), Text('5102 properties', style: TextStyle(color: Colors.white),)],
+            children: const [
+              Text(
+                'London',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '5102 properties',
+                style: TextStyle(color: Colors.white),
+              )
+            ],
           ),
         )
       ],

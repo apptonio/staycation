@@ -7,8 +7,6 @@ class ThemeColors {
   static Color mint200 = const Color(0xffB7F2EF);
   static Color mint100 = const Color(0xffE9FBFA);
   static Color teal800 = const Color(0xff1A3440);
-//TODO: add all colors
-
 }
 
 final TextTheme textTheme = TextTheme(

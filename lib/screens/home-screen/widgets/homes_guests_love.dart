@@ -14,9 +14,9 @@ class HomesGuestsLove extends StatelessWidget {
             height: 330,
             child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                
                 child: Row(
                   children: const [
+                    // I found it easier to add SizedBoxes, instead of padding
                     SizedBox(width: 18),
                     HomeCard(),
                     SizedBox(width: 10),
