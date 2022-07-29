@@ -11,14 +11,19 @@ class HomesGuestsLove extends StatelessWidget {
       children: [
         const SectionTitle(title: 'Homes guests love'),
         SizedBox(
-            height: 300,
+            height: 330,
             child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                
                 child: Row(
                   children: const [
+                    SizedBox(width: 18),
                     HomeCard(),
+                    SizedBox(width: 10),
                     HomeCard(),
+                    SizedBox(width: 10),
                     HomeCard(),
+                    SizedBox(width: 10),
                     HomeCard()
                   ],
                 ))),
