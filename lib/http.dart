@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 class HTTPInterceptor extends InterceptorsWrapper {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
+    // ignore: avoid_print
     print(err);
     return super.onError(err, handler);
   }

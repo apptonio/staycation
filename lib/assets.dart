@@ -1,5 +1,7 @@
 class Assets {
+  // ignore: library_private_types_in_public_api
   static _Icons icons = _Icons();
+  // ignore: library_private_types_in_public_api
   static _Images images = _Images();
 }
 
@@ -30,4 +32,5 @@ class _Icons {
 class _Images {
   String tokyo = 'assets/images/Tokyo.png';
   String sugar = 'assets/images/Sugar.png';
+  String rating = 'assets/images/rating-mobile.png';
 }

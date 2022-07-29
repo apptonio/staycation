@@ -1,5 +1,4 @@
 import 'package:devcademy_flutter/assets.dart';
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
 class LocationStack extends StatelessWidget {
