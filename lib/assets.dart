@@ -26,11 +26,11 @@ class _Icons {
   String places = 'assets/icons/places.svg';
   String remove = 'assets/icons/remove.svg';
   String search = 'assets/icons/search.svg';
+  String star = 'assets/icons/star.svg';
   String upload = 'assets/icons/upload.svg';
 }
 
 class _Images {
   String london = 'assets/images/London.png';
   String sugar = 'assets/images/Sugar.png';
-  String rating = 'assets/images/rating-mobile.png';
 }
