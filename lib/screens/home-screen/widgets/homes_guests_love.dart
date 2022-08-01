@@ -11,22 +11,20 @@ class HomesGuestsLove extends StatelessWidget {
       children: [
         const SectionTitle(title: 'Homes guests love'),
         SizedBox(
-            height: 330,
-            child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: const [
-                    // I found it easier to add SizedBoxes, instead of padding
-                    SizedBox(width: 22),
-                    HomeCard(),
-                    SizedBox(width: 27),
-                    HomeCard(),
-                    SizedBox(width: 27),
-                    HomeCard(),
-                    SizedBox(width: 27),
-                    HomeCard()
-                  ],
-                ))),
+            height: 316,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: const [
+                SizedBox(width: 22),
+                HomeCard(),
+                SizedBox(width: 27),
+                HomeCard(),
+                SizedBox(width: 27),
+                HomeCard(),
+                SizedBox(width: 27),
+                HomeCard()
+              ],
+            )),
       ],
     ));
   }
