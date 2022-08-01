@@ -11,14 +11,14 @@ class LocationStack extends StatelessWidget {
         child: Stack(
       children: [
         Container(
-          foregroundDecoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+          foregroundDecoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0x4d000000),
-                Color(0x00FFFFFF),
+                ThemeColors.black.withOpacity(0.3),
+                ThemeColors.white.withOpacity(0),
               ],
             ),
           ),
