@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import './widgets/popular_locations.dart';
 import './widgets/homes_guests_love.dart';
+import '../../shared/widgets/app_bar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,20 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Staycation',
-            style: textTheme.headline6!
-                .merge(TextStyle(color: ThemeColors.teal800))),
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: SvgPicture.asset(Assets.icons.search)),
-          IconButton(
-              onPressed: () {}, icon: SvgPicture.asset(Assets.icons.more))
-        ],
-        backgroundColor: ThemeColors.white,
-        foregroundColor: ThemeColors.teal800,
-        elevation: 1,
-      ),
+      appBar: MyAppBar("Staycation"),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SingleChildScrollView(
