@@ -1,3 +1,4 @@
+import 'package:devcademy_flutter/screens/home-screen/widgets/stack_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,9 @@ import './widgets/homes_guests_love.dart';
 import '../../shared/widgets/app_bar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final List<LocationStack> _locationCardList = [];
+  HomeScreen({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
               child: Column(
-                  children: const [PopularLocations(), HomesGuestsLove()])),
+                  children: [PopularLocations(locationCardList: _locationCardList), const HomesGuestsLove()])),
         ),
         bottomNavigationBar: const MyBottomNav());
   }

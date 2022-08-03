@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.homeScreen,
       routes: {
-        Routes.homeScreen: (context) => const HomeScreen(),
+        Routes.homeScreen: (context) => HomeScreen(),
       },
     );
   }
