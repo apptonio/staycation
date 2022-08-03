@@ -1,8 +1,5 @@
-import 'package:devcademy_flutter/assets.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import './widgets/popular_locations.dart';
 import './widgets/homes_guests_love.dart';
