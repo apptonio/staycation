@@ -1,3 +1,4 @@
+import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:dio/dio.dart';
 
 import 'models/location.dart';
@@ -34,12 +35,12 @@ class HTTP {
         .toList();
   }
 
-  Future<List<Location>> getHomesGuestsLove() async {
+  Future<List<Accommodation>> getHomesGuestsLove() async {
     Response response = await client.get(
       'homes',
     );
     return response.data
-        .map<Location>((json) => Location.fromJson(json))
+        .map<Accommodation>((json) => Accommodation.fromJson(json))
         .toList();
   }
 
@@ -52,12 +53,12 @@ class HTTP {
         .toList();
   }
 
-  Future<List<Location>> getAllHomes() async {
+  Future<List<Accommodation>> getAllHomes() async {
     Response response = await client.get(
       'homes-all',
     );
     return response.data
-        .map<Location>((json) => Location.fromJson(json))
+        .map<Accommodation>((json) => Accommodation.fromJson(json))
         .toList();
   }
 }
