@@ -48,18 +48,13 @@ class HomesGuestsLove extends StatelessWidget {
             ));
           }
 
-          return Column(
-            children: [
-              const SectionTitle(title: 'Homes guests love'),
-              SizedBox(
-                  height: 316,
-                  child: ListView(
-                    padding: const EdgeInsets.fromLTRB(24.0, 8.0, 0, 0),
-                    scrollDirection: Axis.horizontal,
-                    children: [..._homeCardList],
-                  )),
-            ],
-          );
+          return SizedBox(
+              height: 316,
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(24.0, 8.0, 0, 0),
+                scrollDirection: Axis.horizontal,
+                children: [..._homeCardList],
+              ));
         }));
   }
 }

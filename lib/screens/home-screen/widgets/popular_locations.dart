@@ -40,9 +40,9 @@ class PopularLocations extends StatelessWidget {
             ));
           }
 
-          return Column(
-            children: [
-              const SectionTitle(title: 'Popular locations'),
+          return 
+            
+              
               SizedBox(
                 height: 370,
                 child: GridView.count(
@@ -52,9 +52,9 @@ class PopularLocations extends StatelessWidget {
                   shrinkWrap: true,
                   children: _locationCardList,
                 ),
-              )
-            ],
-          );
+              );
+           
+          
         }));
   }
 }

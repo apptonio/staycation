@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import './widgets/popular_locations.dart';
 import './widgets/homes_guests_love.dart';
 import '../../shared/widgets/app_bar_widget.dart';
+import 'widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<LocationStack> _locationCardList = [];
@@ -20,7 +21,9 @@ class HomeScreen extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
               child: Column(children: [
+                const SectionTitle(title: 'Popular locations'),
             PopularLocations(locationCardList: _locationCardList),
+            const SectionTitle(title: 'Homes guests love'),
             HomesGuestsLove(homeCardList: _homeCardList)
           ])),
         ),
