@@ -1,4 +1,5 @@
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
+import 'package:devcademy_flutter/shared/widgets/rectangle_image.dart';
 import 'package:devcademy_flutter/shared/widgets/stars_bar_widget.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +43,7 @@ class HomeCard extends StatelessWidget {
                 width: 180,
                 child: Column(
                   children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(12.0),
-                        child: Image.network(imageUrl,
-                            height: 154.0, width: 187.0, fit: BoxFit.cover)),
+                    RectangleImage(imageUrl: imageUrl),
                     const SizedBox(height: 8),
                     AccommodationInfo(
                         title: title,
