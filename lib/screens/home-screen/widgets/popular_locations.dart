@@ -3,7 +3,7 @@ import '../../../http.dart';
 import '../../../models/location.dart';
 import '../../../theme.dart';
 import './section_title_widget.dart';
-import './stack_widget.dart';
+import '../../../shared/widgets/stack_widget.dart';
 
 class PopularLocations extends StatelessWidget {
   const PopularLocations({

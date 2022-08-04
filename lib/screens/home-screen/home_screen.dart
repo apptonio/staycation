@@ -1,5 +1,5 @@
 import 'package:devcademy_flutter/screens/home-screen/widgets/card_widget.dart';
-import 'package:devcademy_flutter/screens/home-screen/widgets/stack_widget.dart';
+import 'package:devcademy_flutter/shared/widgets/stack_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
 import 'package:flutter/material.dart';
 
