@@ -15,7 +15,7 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("Homes Guests Love", true, false),
+        appBar: MyAppBar("Homes Guests Love", true, true),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(

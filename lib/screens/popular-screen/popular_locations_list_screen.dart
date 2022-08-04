@@ -13,11 +13,11 @@ class PopularLocationsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar("Popular Locations", true, false),
+      appBar: MyAppBar("Popular Locations", true, true),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 12.0),
+            padding: const EdgeInsets.only(top: 12.0),
             child: FutureBuilder(
                 future: http.getAllLocations(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
