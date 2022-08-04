@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("Staycation"),
+        appBar: MyAppBar("Staycation", false, true),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: SingleChildScrollView(
