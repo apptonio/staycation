@@ -15,13 +15,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: theme,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.homeScreen,
+      initialRoute: Routes.homesGuestsLoveListScreen,
       routes: {
         Routes.homeScreen: (context) => HomeScreen(),
         Routes.popularLocationsListScreen: (context) =>
             PopularLocationsListScreen(),
         Routes.homesGuestsLoveListScreen: (context) =>
-            const HomesGuestsLoveListScreen(),
+            HomesGuestsLoveListScreen(),
         Routes.homeDetailsScreen: (context) => const HomeDetailsScreen(),
       },
     );

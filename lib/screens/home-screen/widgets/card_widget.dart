@@ -1,7 +1,5 @@
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/rectangle_image.dart';
-import 'package:devcademy_flutter/shared/widgets/stars_bar_widget.dart';
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
@@ -39,18 +37,17 @@ class HomeCard extends StatelessWidget {
     return (Center(
         child: Padding(
             padding: const EdgeInsets.only(right: 20.0),
-            child: SizedBox(
-                width: 180,
-                child: Column(
-                  children: [
-                    RectangleImage(imageUrl: imageUrl),
-                    const SizedBox(height: 8),
-                    AccommodationInfo(
-                        title: title,
-                        location: location,
-                        price: price,
-                        categorization: categorization)
-                  ],
-                )))));
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RectangleImage(imageUrl: imageUrl),
+                const SizedBox(height: 8),
+                AccommodationInfo(
+                    title: title,
+                    location: location,
+                    price: price,
+                    categorization: categorization)
+              ],
+            ))));
   }
 }
