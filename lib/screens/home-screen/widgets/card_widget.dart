@@ -36,14 +36,14 @@ class HomeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return (Center(
         child: Padding(
-            padding: const EdgeInsets.only(right: 28.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: SizedBox(
                 width: 180,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(12.0),
                         child: Image.network(imageUrl,
                             height: 154.0, width: 187.0, fit: BoxFit.cover)),
                     const SizedBox(height: 8),

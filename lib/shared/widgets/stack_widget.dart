@@ -35,9 +35,14 @@ class LocationStack extends StatelessWidget {
               ),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(imageUrl,
-                  fit: BoxFit.cover, height: 155.0, width: 158.0),
+              borderRadius: BorderRadius.circular(12.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: NetworkImage(imageUrl),
+                  fit: BoxFit.cover,
+                )),
+              ),
             )),
         Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 16.0, 0.0, 0.0),

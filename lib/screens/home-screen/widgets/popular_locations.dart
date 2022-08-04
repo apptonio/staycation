@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../http.dart';
 import '../../../models/location.dart';
 import '../../../theme.dart';
-import './section_title_widget.dart';
 import '../../../shared/widgets/stack_widget.dart';
 
 class PopularLocations extends StatelessWidget {
@@ -30,7 +29,7 @@ class PopularLocations extends StatelessWidget {
           }
           List<Location> locations = snapshot.data;
 
-          for(var location in locations) {
+          for (var location in locations) {
             _locationCardList.add(LocationStack(
               id: location.id,
               locationName: location.locationName,
@@ -40,21 +39,15 @@ class PopularLocations extends StatelessWidget {
             ));
           }
 
-          return 
-            
-              
-              SizedBox(
-                height: 370,
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  padding: const EdgeInsets.all(8.0),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: _locationCardList,
-                ),
-              );
-           
-          
+          return GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            children: _locationCardList,
+          );
         }));
   }
 }

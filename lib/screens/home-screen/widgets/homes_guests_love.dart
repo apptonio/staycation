@@ -2,7 +2,6 @@ import 'package:devcademy_flutter/models/accommodation.dart';
 
 import '../../../http.dart';
 import '../../../theme.dart';
-import 'section_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'card_widget.dart';
 
@@ -19,17 +18,17 @@ class HomesGuestsLove extends StatelessWidget {
   Widget build(BuildContext context) {
     return (FutureBuilder(
         future: http.getHomesGuestsLove(),
-        builder: (BuildContext context, AsyncSnapshot snapshot2) {
-          if (snapshot2.hasError) {
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasError) {
             return const Center(child: Text('error'));
           }
-          if (snapshot2.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
                 child: CircularProgressIndicator(
               color: ThemeColors.mint500,
             ));
           }
-          List<Accommodation> accomodations = snapshot2.data;
+          List<Accommodation> accomodations = snapshot.data;
 
           for (var accomodation in accomodations) {
             _homeCardList.add(HomeCard(
@@ -51,7 +50,7 @@ class HomesGuestsLove extends StatelessWidget {
           return SizedBox(
               height: 316,
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(24.0, 8.0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(20.0, 8.0, 0, 0),
                 scrollDirection: Axis.horizontal,
                 children: [..._homeCardList],
               ));
