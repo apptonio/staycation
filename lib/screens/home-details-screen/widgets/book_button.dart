@@ -14,6 +14,9 @@ class BookButton extends StatelessWidget {
               height: 42.0,
               width: double.infinity,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: ThemeColors.mint400,
+                ),
                 onPressed: () {},
                 child: Text("BOOK YOUR STAY",
                     style: textTheme.button

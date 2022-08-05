@@ -38,8 +38,10 @@ class HomeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Scaffold(
-      body: Column(
+    return MaterialApp(
+        home: Scaffold(
+            body: SafeArea(
+      child: Stack(
         children: [
           Stack(
             children: [
@@ -47,30 +49,30 @@ class HomeDetailsScreen extends StatelessWidget {
                 imageUrl,
                 width: double.infinity,
               ),
-              SafeArea(
-                  child: Padding(
+               Padding(
                       padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 0),
                       child: SvgPicture.asset(
                         Assets.icons.back,
                         color: ThemeColors.teal800,
-                      )))
+                      )),
+              DetailsSheet(
+                  id: id,
+                  title: title,
+                  shortDescription: shortDescription,
+                  longDescription: longDescription,
+                  location: location,
+                  postalCode: postalCode,
+                  price: price,
+                  categorization: categorization,
+                  capacity: capacity,
+                  accommodationType: accommodationType,
+                  freeCancelation: freeCancelation),
             ],
           ),
-          DetailsSheet(
-              id: id,
-              title: title,
-              shortDescription: shortDescription,
-              longDescription: longDescription,
-              location: location,
-              postalCode: postalCode,
-              price: price,
-              categorization: categorization,
-              capacity: capacity,
-              accommodationType: accommodationType,
-              freeCancelation: freeCancelation),
-          const BookButton()
+          const Align(
+              alignment: AlignmentDirectional.bottomCenter, child: BookButton())
         ],
       ),
-    ));
+    )));
   }
 }
