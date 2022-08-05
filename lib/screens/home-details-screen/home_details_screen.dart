@@ -1,6 +1,10 @@
+import 'package:devcademy_flutter/screens/home-details-screen/widgets/book_button.dart';
 import 'package:devcademy_flutter/screens/home-details-screen/widgets/details_sheet.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../assets.dart';
 
 class HomeDetailsScreen extends StatelessWidget {
   const HomeDetailsScreen(
@@ -37,26 +41,34 @@ class HomeDetailsScreen extends StatelessWidget {
     return (Scaffold(
       body: Column(
         children: [
-          Image.network(
-            imageUrl,
-            width: double.infinity,
+          Stack(
+            children: [
+              Image.network(
+                imageUrl,
+                width: double.infinity,
+              ),
+              SafeArea(
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 0),
+                      child: SvgPicture.asset(
+                        Assets.icons.back,
+                        color: ThemeColors.teal800,
+                      )))
+            ],
           ),
-          
-          DetailsSheet(id: id, title: title, shortDescription: shortDescription, longDescription: longDescription, location: location, postalCode: postalCode, price: price, categorization: categorization, capacity: capacity, accommodationType: accommodationType, freeCancelation: freeCancelation),
-
-          SafeArea(
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: SizedBox(
-                    height: 42.0,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text("BOOK YOUR STAY",
-                          style: textTheme.button
-                              ?.merge(TextStyle(color: ThemeColors.white))),
-                    ),
-                  ))),
+          DetailsSheet(
+              id: id,
+              title: title,
+              shortDescription: shortDescription,
+              longDescription: longDescription,
+              location: location,
+              postalCode: postalCode,
+              price: price,
+              categorization: categorization,
+              capacity: capacity,
+              accommodationType: accommodationType,
+              freeCancelation: freeCancelation),
+          const BookButton()
         ],
       ),
     ));
