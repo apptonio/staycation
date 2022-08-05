@@ -43,18 +43,16 @@ class HomeDetailsScreen extends StatelessWidget {
             body: SafeArea(
       child: Stack(
         children: [
-          Stack(
-            children: [
               Image.network(
                 imageUrl,
                 width: double.infinity,
               ),
-               Padding(
-                      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 0),
-                      child: SvgPicture.asset(
-                        Assets.icons.back,
-                        color: ThemeColors.teal800,
-                      )),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 0),
+                  child: SvgPicture.asset(
+                    Assets.icons.back,
+                    color: ThemeColors.teal800,
+                  )),
               DetailsSheet(
                   id: id,
                   title: title,
@@ -67,11 +65,10 @@ class HomeDetailsScreen extends StatelessWidget {
                   capacity: capacity,
                   accommodationType: accommodationType,
                   freeCancelation: freeCancelation),
-            ],
-          ),
-          const Align(
-              alignment: AlignmentDirectional.bottomCenter, child: BookButton())
-        ],
+              const Align(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  child: BookButton())
+            ],  
       ),
     )));
   }

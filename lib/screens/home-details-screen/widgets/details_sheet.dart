@@ -44,7 +44,7 @@ class DetailsSheet extends StatelessWidget {
             controller: scrollController,
             child: Container(
                 constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height * 1.0),
+                    maxHeight: MediaQuery.of(context).size.height * 1.05),
                 padding: const EdgeInsets.fromLTRB(20, 24, 20, 100),
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
@@ -53,7 +53,6 @@ class DetailsSheet extends StatelessWidget {
                   color: ThemeColors.white,
                 ),
                 child: Column(
-                  
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
