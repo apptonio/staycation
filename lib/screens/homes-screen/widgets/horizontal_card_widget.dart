@@ -1,9 +1,10 @@
-import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
-import 'package:devcademy_flutter/shared/widgets/rectangle_image.dart';
+import 'package:devcademy_flutter/shared/widgets/square_image.dart';
 import 'package:flutter/material.dart';
 
-class HomeCard extends StatelessWidget {
-  const HomeCard({
+import '../../../shared/widgets/accommodation_info.dart';
+
+class HorizontalCard extends StatelessWidget {
+  const HorizontalCard({
     Key? key,
     required this.id,
     required this.imageUrl,
@@ -35,19 +36,20 @@ class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Center(
-        child: Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RectangleImage(imageUrl: imageUrl),
-                const SizedBox(height: 8),
-                AccommodationInfo(
-                    title: title,
-                    location: location,
-                    price: price,
-                    categorization: categorization)
-              ],
-            ))));
+        child: GridView.count(
+      crossAxisCount: 2,
+      crossAxisSpacing: 20,
+      padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      children: [
+        SquareImage(imageUrl: imageUrl),
+        AccommodationInfo(
+            title: title,
+            location: location,
+            price: price,
+            categorization: categorization)
+      ],
+    )));
   }
 }

@@ -30,7 +30,4 @@ class _Icons {
   String upload = 'assets/icons/upload.svg';
 }
 
-class _Images {
-  String london = 'assets/images/London.png';
-  String sugar = 'assets/images/Sugar.png';
-}
+class _Images {}
