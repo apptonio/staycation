@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Routes {
   static String homeScreen = 'homeScreen';
   static String popularLocationsListScreen = 'popularLocationsListScreen';
@@ -5,6 +7,14 @@ class Routes {
   static String homeDetailsScreen = 'homeDetailsScreen';
 }
 
-class Router {}
+class Router {
+  void goBack(BuildContext context){
+    return Navigator.pop(context);
+  }
+
+  Future<void> navigateTo(BuildContext context, String route) {
+    return Navigator.pushNamed(context, route);
+  }
+}
 
 Router router = Router();

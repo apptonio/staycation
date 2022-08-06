@@ -1,10 +1,14 @@
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../../router.dart';
+
 class SectionTitle extends StatelessWidget {
-  const SectionTitle({Key? key, this.title = ''}) : super(key: key);
+  const SectionTitle({Key? key, required this.title, required this.route})
+      : super(key: key);
 
   final String title;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class SectionTitle extends StatelessWidget {
             style: textTheme.headline5,
           ),
           trailing: TextButton(
-            onPressed: () {},
+            onPressed: () => router.navigateTo(context, route),
             child: Text("VIEW MORE",
                 style: textTheme.button!
                     .merge(TextStyle(color: ThemeColors.mint400))),

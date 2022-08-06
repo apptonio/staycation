@@ -1,3 +1,4 @@
+import 'package:devcademy_flutter/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:devcademy_flutter/assets.dart';
@@ -21,7 +22,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: Visibility(
           visible: showBackIcon ? true : false,
           child: IconButton(
-              onPressed: () {}, icon: SvgPicture.asset(Assets.icons.back))),
+              onPressed: () => router.goBack(context), icon: SvgPicture.asset(Assets.icons.back))),
       title: Text(title,
           style: textTheme.headline6!
               .merge(TextStyle(color: ThemeColors.teal800))),
