@@ -1,3 +1,4 @@
+import 'package:devcademy_flutter/router.dart';
 import 'package:devcademy_flutter/shared/widgets/square_image.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class HorizontalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Center(
+    return (GestureDetector(onTap: () => router.navigateTo(context, Routes.homeDetailsScreen ), child: Center(
         child: GridView.count(
       crossAxisCount: 2,
       crossAxisSpacing: 20,
@@ -50,6 +51,6 @@ class HorizontalCard extends StatelessWidget {
             price: price,
             categorization: categorization)
       ],
-    )));
+    ))));
   }
 }

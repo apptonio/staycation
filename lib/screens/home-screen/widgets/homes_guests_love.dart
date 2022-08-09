@@ -1,4 +1,5 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
+import 'package:devcademy_flutter/router.dart';
 
 import '../../../http.dart';
 import '../../../theme.dart';
@@ -8,11 +9,7 @@ import 'card_widget.dart';
 class HomesGuestsLove extends StatelessWidget {
   const HomesGuestsLove({
     Key? key,
-    required List<HomeCard> homeCardList,
-  })  : _homeCardList = homeCardList,
-        super(key: key);
-
-  final List<HomeCard> _homeCardList;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,32 +25,31 @@ class HomesGuestsLove extends StatelessWidget {
               color: ThemeColors.mint500,
             ));
           }
-          List<Accommodation> accomodations = snapshot.data;
+          List<Accommodation> accommodations = snapshot.data;
 
-          for (var accomodation in accomodations) {
-            _homeCardList.add(HomeCard(
-              id: accomodation.id,
-              imageUrl: accomodation.imageUrl,
-              title: accomodation.title,
-              shortDescription: accomodation.shortDescription,
-              longDescription: accomodation.longDescription,
-              location: accomodation.location,
-              postalCode: accomodation.postalCode,
-              price: accomodation.price,
-              categorization: accomodation.categorization,
-              capacity: accomodation.capacity,
-              accommodationType: accomodation.accommodationType,
-              freeCancelation: accomodation.freeCancelation,
-            ));
-          }
-
-          return SizedBox(
-              height: 316,
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(20.0, 8.0, 0, 0),
-                scrollDirection: Axis.horizontal,
-                children: [..._homeCardList],
-              ));
+          return SizedBox(height: 316, child: ListView.builder(
+              itemCount: accommodations.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                Accommodation accommodation = accommodations[index];
+                return GestureDetector(
+                    onTap: () => router.toAccommodationDetailsScreen(
+                        context, accommodation),
+                    child: HomeCard(
+                      id: accommodation.id,
+                      imageUrl: accommodation.imageUrl,
+                      title: accommodation.title,
+                      shortDescription: accommodation.shortDescription,
+                      longDescription: accommodation.longDescription,
+                      location: accommodation.location,
+                      postalCode: accommodation.postalCode,
+                      price: accommodation.price,
+                      categorization: accommodation.categorization,
+                      capacity: accommodation.capacity,
+                      accommodationType: accommodation.accommodationType,
+                      freeCancelation: accommodation.freeCancelation,
+                    ));
+              }));
         }));
   }
 }

@@ -1,4 +1,3 @@
-import 'package:devcademy_flutter/screens/home-screen/widgets/card_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/stack_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<LocationStack> _locationCardList = [];
-  final List<HomeCard> _homeCardList = [];
   HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -29,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             SectionTitle(
                 title: 'Homes guests love',
                 route: Routes.homesGuestsLoveListScreen),
-            HomesGuestsLove(homeCardList: _homeCardList)
+            const HomesGuestsLove()
           ])),
         ),
         bottomNavigationBar: const MyBottomNav());
