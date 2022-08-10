@@ -2,8 +2,6 @@ import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/rectangle_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../router.dart';
-
 class HomeCard extends StatelessWidget {
   const HomeCard({
     Key? key,
@@ -36,7 +34,7 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (GestureDetector(onTap: () => router.navigateTo(context, Routes.homeDetailsScreen ), child: Center(
+    return Center(
         child: Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: Column(
@@ -50,6 +48,6 @@ class HomeCard extends StatelessWidget {
                     price: price,
                     categorization: categorization)
               ],
-            )))));
+            )));
   }
 }

@@ -10,19 +10,18 @@ import '../../assets.dart';
 import '../../router.dart';
 
 class HomeDetailsScreen extends StatelessWidget {
-   const HomeDetailsScreen({
+  const HomeDetailsScreen({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final HomeDetailsArguments arguments =
-        ModalRoute.of(context)!.settings.arguments
-            as HomeDetailsArguments;
+        ModalRoute.of(context)!.settings.arguments as HomeDetailsArguments;
     Accommodation accommodation = arguments.accommodation;
 
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: SafeArea(
       child: Stack(

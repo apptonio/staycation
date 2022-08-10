@@ -43,7 +43,7 @@ class PopularLocations extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 20,
             crossAxisSpacing: 20,
-            padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
+            padding: const EdgeInsets.all(20.0),
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: _locationCardList,

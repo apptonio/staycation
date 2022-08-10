@@ -36,11 +36,10 @@ class HorizontalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (GestureDetector(onTap: () => router.navigateTo(context, Routes.homeDetailsScreen ), child: Center(
+    return Center(
         child: GridView.count(
       crossAxisCount: 2,
       crossAxisSpacing: 20,
-      padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
@@ -51,6 +50,6 @@ class HorizontalCard extends StatelessWidget {
             price: price,
             categorization: categorization)
       ],
-    ))));
+    ));
   }
 }

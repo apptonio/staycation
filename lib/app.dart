@@ -21,7 +21,7 @@ class App extends StatelessWidget {
           Routes.popularLocationsListScreen: (context) =>
               PopularLocationsListScreen(),
           Routes.homesGuestsLoveListScreen: (context) =>
-              HomesGuestsLoveListScreen(),
+              const HomesGuestsLoveListScreen(),
           Routes.homeDetailsScreen: (context) =>
               const HomeDetailsScreen(),
         },

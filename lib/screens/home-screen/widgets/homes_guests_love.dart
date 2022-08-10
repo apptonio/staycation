@@ -28,6 +28,7 @@ class HomesGuestsLove extends StatelessWidget {
           List<Accommodation> accommodations = snapshot.data;
 
           return SizedBox(height: 316, child: ListView.builder(
+              padding: const EdgeInsets.all(20.0),
               itemCount: accommodations.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
