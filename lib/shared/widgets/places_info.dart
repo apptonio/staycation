@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-
 import '../../theme.dart';
 import 'stars_bar_widget.dart';
 
-class AccommodationInfo extends StatelessWidget {
+class PlacesInfo extends StatelessWidget {
   final String title;
   final String location;
-  final Widget thirdInfo;
+  final String description;
   final int categorization;
 
-  const AccommodationInfo(
+  const PlacesInfo(
       {Key? key,
       required this.title,
       required this.location,
-      required this.thirdInfo,
+      required this.description,
       required this.categorization})
       : super(key: key);
 
@@ -35,8 +34,11 @@ class AccommodationInfo extends StatelessWidget {
           )),
         ),
         const SizedBox(height: 10),
-        thirdInfo
-        ,
+        Text(
+          description,
+          style: textTheme.bodyText2!.merge(TextStyle(
+              color: ThemeColors.teal800, fontWeight: FontWeight.bold)),
+        ),
         const SizedBox(height: 16),
         StarsBar(categorization: categorization)
       ],

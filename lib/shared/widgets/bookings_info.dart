@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import '../../theme.dart';
 import 'stars_bar_widget.dart';
 
-class AccommodationInfo extends StatelessWidget {
+class BookingsInfo extends StatelessWidget {
   final String title;
   final String location;
-  final Widget thirdInfo;
+  final DateTime checkIn;
+  final DateTime checkOut;
   final int categorization;
 
-  const AccommodationInfo(
+  const BookingsInfo(
       {Key? key,
       required this.title,
       required this.location,
-      required this.thirdInfo,
+      required this.checkIn,
+      required this.checkOut,
       required this.categorization})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final String formattedCheckIn = DateFormat('MMMd').format(checkIn);
+    final String formattedCheckOut = DateFormat('yMMMd').format(checkOut);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,8 +39,11 @@ class AccommodationInfo extends StatelessWidget {
           )),
         ),
         const SizedBox(height: 10),
-        thirdInfo
-        ,
+        Text(
+          '$formattedCheckIn - $formattedCheckOut',
+          style: textTheme.bodyText2!.merge(TextStyle(
+              color: ThemeColors.teal800, fontWeight: FontWeight.bold)),
+        ),
         const SizedBox(height: 16),
         StarsBar(categorization: categorization)
       ],

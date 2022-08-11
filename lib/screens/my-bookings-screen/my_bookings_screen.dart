@@ -1,28 +1,32 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
+import 'package:devcademy_flutter/models/reservation.dart';
 import 'package:devcademy_flutter/screens/homes-screen/widgets/horizontal_card_widget.dart';
-import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
-import 'package:devcademy_flutter/shared/widgets/price.dart';
+import 'package:devcademy_flutter/shared/widgets/places_info.dart';
 import 'package:flutter/material.dart';
 
 import '../../http.dart';
 import '../../router.dart';
 import '../../shared/widgets/app_bar_widget.dart';
+import '../../shared/widgets/bookings_info.dart';
 import '../../theme.dart';
 
-class HomesGuestsLoveListScreen extends StatelessWidget {
-  const HomesGuestsLoveListScreen({
+class MyBookingsScreen extends StatelessWidget {
+  const MyBookingsScreen({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("Homes Guests Love", true, true),
+        appBar: MyAppBar("MyBookings", true, true),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(
                 child: FutureBuilder(
-                    future: http.getAllHomes(),
+                    future: Future.wait([
+                      http.getMyBookings(),
+                      http.getAllHomes(),
+                    ]),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasError) {
                         return const Center(child: Text('error'));
@@ -33,7 +37,9 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                           color: ThemeColors.mint500,
                         ));
                       }
-                      List<Accommodation> accommodations = snapshot.data;
+                      List<Reservation> reservations = snapshot.data[0];
+
+                      List<Accommodation> accommodations = snapshot.data[1];
 
                       return ListView.separated(
                           shrinkWrap: true,
@@ -41,17 +47,24 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                           separatorBuilder: ((context, index) =>
                               const SizedBox(height: 20)),
-                          itemCount: accommodations.length,
+                          itemCount: reservations.length,
                           itemBuilder: (BuildContext context, index) {
-                            Accommodation accommodation = accommodations[index];
+                            Reservation reservation = reservations[index];
+                            String accommodationID = reservation.homesallId;
+                            final sorted = accommodations.firstWhere(
+                                (element) => element.id == accommodationID);
+
                             return GestureDetector(
-                                onTap: () =>
-                                    router.toAccommodationDetailsScreen(
-                                        context, accommodation),
+                                onTap: () => {},
                                 child: HorizontalCard(
-                                  accommodation: accommodation,
-                                  typeOfInfo: AccommodationInfo(categorization: accommodation.categorization, title: accommodation.title, location: accommodation.location, thirdInfo: AccommodationPrice(price: accommodation.price,)),
-                                ));
+                                    accommodation: sorted,
+                                    typeOfInfo: BookingsInfo(
+                                      title: sorted.title,
+                                      location: sorted.location,
+                                      categorization: sorted.categorization,
+                                      checkIn: reservation.checkIn,
+                                      checkOut: reservation.checkOut,
+                                    )));
                           });
                     }))));
   }

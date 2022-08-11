@@ -1,5 +1,7 @@
 import 'package:devcademy_flutter/router.dart';
 import 'package:devcademy_flutter/screens/home-screen/home_screen.dart';
+import 'package:devcademy_flutter/screens/my-bookings-screen/my_bookings_screen.dart';
+import 'package:devcademy_flutter/screens/my-places-screen/my_places_screen.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +26,8 @@ class App extends StatelessWidget {
               const HomesGuestsLoveListScreen(),
           Routes.homeDetailsScreen: (context) =>
               const HomeDetailsScreen(),
+          Routes.myBookingsScreen: ((context) => const MyBookingsScreen()),
+          Routes.myPlacesScreen:(context) => const MyPlacesScreen()
         },
         );
   }

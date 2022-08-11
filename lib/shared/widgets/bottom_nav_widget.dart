@@ -28,6 +28,8 @@ class MyBottomNav extends StatelessWidget {
         ],
         currentIndex: 0,
         selectedItemColor: ThemeColors.mint500,
+        
       );
+
   }
 }

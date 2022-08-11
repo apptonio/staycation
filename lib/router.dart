@@ -8,6 +8,8 @@ class Routes {
   static String popularLocationsListScreen = 'popularLocationsListScreen';
   static String homesGuestsLoveListScreen = 'homesGuestsLoveListScreen';
   static String homeDetailsScreen = 'homeDetailsScreen';
+  static String myBookingsScreen = 'MyBookingsScreen';
+  static String myPlacesScreen = 'myPlacesScreen';
 }
 
 class Router {

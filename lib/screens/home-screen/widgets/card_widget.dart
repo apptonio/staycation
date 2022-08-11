@@ -1,4 +1,5 @@
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
+import 'package:devcademy_flutter/shared/widgets/price.dart';
 import 'package:devcademy_flutter/shared/widgets/rectangle_image.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,7 @@ class HomeCard extends StatelessWidget {
                 AccommodationInfo(
                     title: title,
                     location: location,
-                    price: price,
+                    thirdInfo: AccommodationPrice(price: price),
                     categorization: categorization)
               ],
             )));
