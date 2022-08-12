@@ -27,30 +27,21 @@ class HomesGuestsLove extends StatelessWidget {
           }
           List<Accommodation> accommodations = snapshot.data;
 
-          return SizedBox(height: 316, child: ListView.builder(
-              padding: const EdgeInsets.all(20.0),
-              itemCount: accommodations.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                Accommodation accommodation = accommodations[index];
-                return GestureDetector(
-                    onTap: () => router.toAccommodationDetailsScreen(
-                        context, accommodation),
-                    child: HomeCard(
-                      id: accommodation.id,
-                      imageUrl: accommodation.imageUrl,
-                      title: accommodation.title,
-                      shortDescription: accommodation.shortDescription,
-                      longDescription: accommodation.longDescription,
-                      location: accommodation.location,
-                      postalCode: accommodation.postalCode,
-                      price: accommodation.price,
-                      categorization: accommodation.categorization,
-                      capacity: accommodation.capacity,
-                      accommodationType: accommodation.accommodationType,
-                      freeCancelation: accommodation.freeCancelation,
-                    ));
-              }));
+          return SizedBox(
+              height: 316,
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(20.0),
+                  itemCount: accommodations.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    Accommodation accommodation = accommodations[index];
+                    return GestureDetector(
+                        onTap: () => router.toAccommodationDetailsScreen(
+                            context, accommodation),
+                        child: HomeCard(
+                          accommodation: accommodation,
+                        ));
+                  }));
         }));
   }
 }
