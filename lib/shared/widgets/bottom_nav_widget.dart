@@ -29,10 +29,10 @@ class MyBottomNav extends StatelessWidget {
       unselectedItemColor: ThemeColors.gray500,
       // doesn't work for some reason so I had to use Bools
       //selectedIconTheme: IconThemeData(color: ThemeColors.mint500),
-      onTap: (int curr) {
-        if (index == curr) {
+      onTap: (int currentIndex) {
+        if (index == currentIndex) {
         } else {
-          switch (curr) {
+          switch (currentIndex) {
             case 0:
               router.navigateTo(context, Routes.homeScreen);
               break;
