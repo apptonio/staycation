@@ -1,7 +1,9 @@
+import 'package:devcademy_flutter/models/location.dart';
 import 'package:devcademy_flutter/providers/home_details_arguments.dart';
 import 'package:flutter/material.dart';
 
 import 'models/accommodation.dart';
+import 'providers/location_filter_arguments.dart';
 
 class Routes {
   static String homeScreen = 'homeScreen';
@@ -28,6 +30,16 @@ class Router {
       Routes.homeDetailsScreen,
       arguments:
           HomeDetailsArguments(accommodation: accommodation),
+    );
+  }
+
+  Future<void> toLocationHomesScreen(
+      BuildContext context, Location location) {
+    return Navigator.pushNamed(
+      context,
+      Routes.homesGuestsLoveListScreen,
+      arguments:
+          LocationFilterArguments(location: location),
     );
   }
 }

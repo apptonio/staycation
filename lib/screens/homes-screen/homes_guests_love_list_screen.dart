@@ -1,10 +1,12 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
+import 'package:devcademy_flutter/providers/location_filter_arguments.dart';
 import 'package:devcademy_flutter/screens/homes-screen/widgets/horizontal_card_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/price_info.dart';
 import 'package:flutter/material.dart';
 
 import '../../http.dart';
+import '../../models/location.dart';
 import '../../router.dart';
 import '../../shared/widgets/app_bar_widget.dart';
 import '../../theme.dart';
@@ -16,6 +18,10 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LocationFilterArguments arguments =
+        ModalRoute.of(context)!.settings.arguments as LocationFilterArguments;
+    Location location = arguments.location;
+
     return Scaffold(
         appBar: MyAppBar("Homes Guests Love", true, true),
         resizeToAvoidBottomInset: false,
@@ -34,6 +40,13 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                         ));
                       }
                       List<Accommodation> accommodations = snapshot.data;
+
+                      String accommodationLocation = location.locationName;
+
+                      accommodations = accommodations
+                          .where((element) =>
+                              element.location == accommodationLocation)
+                          .toList();
 
                       return ListView.separated(
                           shrinkWrap: true,

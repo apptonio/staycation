@@ -15,20 +15,19 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: theme,
-        debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeScreen,
-        routes: {
-          Routes.homeScreen: (context) => HomeScreen(),
-          Routes.popularLocationsListScreen: (context) =>
-              PopularLocationsListScreen(),
-          Routes.homesGuestsLoveListScreen: (context) =>
-              const HomesGuestsLoveListScreen(),
-          Routes.homeDetailsScreen: (context) =>
-              const HomeDetailsScreen(),
-          Routes.myBookingsScreen: ((context) => const MyBookingsScreen()),
-          Routes.myPlacesScreen:(context) => const MyPlacesScreen()
-        },
-        );
+      theme: theme,
+      debugShowCheckedModeBanner: false,
+      initialRoute: Routes.homeScreen,
+      routes: {
+        Routes.homeScreen: (context) => const HomeScreen(),
+        Routes.popularLocationsListScreen: (context) =>
+            const PopularLocationsListScreen(),
+        Routes.homesGuestsLoveListScreen: (context) =>
+            const HomesGuestsLoveListScreen(),
+        Routes.homeDetailsScreen: (context) => const HomeDetailsScreen(),
+        Routes.myBookingsScreen: ((context) => const MyBookingsScreen()),
+        Routes.myPlacesScreen: (context) => const MyPlacesScreen()
+      },
+    );
   }
 }

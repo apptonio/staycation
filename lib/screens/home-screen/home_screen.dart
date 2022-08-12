@@ -1,4 +1,3 @@
-import 'package:devcademy_flutter/shared/widgets/stack_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +8,7 @@ import '../../shared/widgets/app_bar_widget.dart';
 import 'widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<LocationStack> _locationCardList = [];
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +21,15 @@ class HomeScreen extends StatelessWidget {
             SectionTitle(
                 title: 'Popular locations',
                 route: Routes.popularLocationsListScreen),
-            PopularLocations(locationCardList: _locationCardList),
+            const PopularLocations(),
             SectionTitle(
                 title: 'Homes guests love',
                 route: Routes.homesGuestsLoveListScreen),
             const HomesGuestsLove()
           ])),
         ),
-        bottomNavigationBar: const MyBottomNav(index: 0,));
+        bottomNavigationBar: const MyBottomNav(
+          index: 0,
+        ));
   }
 }
