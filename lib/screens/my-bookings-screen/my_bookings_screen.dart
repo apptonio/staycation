@@ -1,13 +1,12 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/models/reservation.dart';
 import 'package:devcademy_flutter/screens/homes-screen/widgets/horizontal_card_widget.dart';
-import 'package:devcademy_flutter/shared/widgets/places_info.dart';
+import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
+import 'package:devcademy_flutter/shared/widgets/date_info.dart';
 import 'package:flutter/material.dart';
 
 import '../../http.dart';
-import '../../router.dart';
 import '../../shared/widgets/app_bar_widget.dart';
-import '../../shared/widgets/bookings_info.dart';
 import '../../theme.dart';
 
 class MyBookingsScreen extends StatelessWidget {
@@ -18,7 +17,7 @@ class MyBookingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("MyBookings", true, true),
+        appBar: MyAppBar("My Bookings", false, false),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(
@@ -58,12 +57,13 @@ class MyBookingsScreen extends StatelessWidget {
                                 onTap: () => {},
                                 child: HorizontalCard(
                                     accommodation: sorted,
-                                    typeOfInfo: BookingsInfo(
+                                    typeOfInfo: AccommodationInfo(
                                       title: sorted.title,
                                       location: sorted.location,
                                       categorization: sorted.categorization,
-                                      checkIn: reservation.checkIn,
-                                      checkOut: reservation.checkOut,
+                                      specialData: DateInfo(
+                                          checkIn: reservation.checkIn,
+                                          checkOut: reservation.checkOut),
                                     )));
                           });
                     }))));

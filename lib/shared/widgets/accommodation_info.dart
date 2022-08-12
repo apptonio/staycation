@@ -6,14 +6,14 @@ import 'stars_bar_widget.dart';
 class AccommodationInfo extends StatelessWidget {
   final String title;
   final String location;
-  final Widget thirdInfo;
+  final Widget specialData;
   final int categorization;
 
   const AccommodationInfo(
       {Key? key,
       required this.title,
       required this.location,
-      required this.thirdInfo,
+      required this.specialData,
       required this.categorization})
       : super(key: key);
 
@@ -35,7 +35,7 @@ class AccommodationInfo extends StatelessWidget {
           )),
         ),
         const SizedBox(height: 10),
-        thirdInfo
+        specialData
         ,
         const SizedBox(height: 16),
         StarsBar(categorization: categorization)

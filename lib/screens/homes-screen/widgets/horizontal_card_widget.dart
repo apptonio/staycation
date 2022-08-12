@@ -2,8 +2,6 @@ import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/shared/widgets/square_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/widgets/accommodation_info.dart';
-
 class HorizontalCard extends StatelessWidget {
   const HorizontalCard({
     Key? key,

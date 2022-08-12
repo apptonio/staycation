@@ -1,7 +1,7 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/screens/homes-screen/widgets/horizontal_card_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
-import 'package:devcademy_flutter/shared/widgets/price.dart';
+import 'package:devcademy_flutter/shared/widgets/price_info.dart';
 import 'package:flutter/material.dart';
 
 import '../../http.dart';
@@ -50,7 +50,14 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                                         context, accommodation),
                                 child: HorizontalCard(
                                   accommodation: accommodation,
-                                  typeOfInfo: AccommodationInfo(categorization: accommodation.categorization, title: accommodation.title, location: accommodation.location, thirdInfo: AccommodationPrice(price: accommodation.price,)),
+                                  typeOfInfo: AccommodationInfo(
+                                      categorization:
+                                          accommodation.categorization,
+                                      title: accommodation.title,
+                                      location: accommodation.location,
+                                      specialData: AccommodationPrice(
+                                        price: accommodation.price,
+                                      )),
                                 ));
                           });
                     }))));

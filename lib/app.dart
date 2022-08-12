@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     return MaterialApp(
         theme: theme,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeScreen,
+        initialRoute: Routes.myBookingsScreen,
         routes: {
           Routes.homeScreen: (context) => HomeScreen(),
           Routes.popularLocationsListScreen: (context) =>
