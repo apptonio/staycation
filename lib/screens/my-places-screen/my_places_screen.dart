@@ -85,6 +85,6 @@ class MyPlacesScreen extends StatelessWidget {
                             // }
                           });
                     }))),
-        bottomNavigationBar: const MyBottomNav());
+        bottomNavigationBar: const MyBottomNav(index: 2));
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../http.dart';
 import '../../shared/widgets/app_bar_widget.dart';
+import '../../shared/widgets/bottom_nav_widget.dart';
 import '../../theme.dart';
 
 class MyBookingsScreen extends StatelessWidget {
@@ -66,6 +67,6 @@ class MyBookingsScreen extends StatelessWidget {
                                           checkOut: reservation.checkOut),
                                     )));
                           });
-                    }))));
+                    }))), bottomNavigationBar: const MyBottomNav(index: 1));
   }
 }

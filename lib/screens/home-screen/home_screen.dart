@@ -30,6 +30,6 @@ class HomeScreen extends StatelessWidget {
             const HomesGuestsLove()
           ])),
         ),
-        bottomNavigationBar: const MyBottomNav());
+        bottomNavigationBar: const MyBottomNav(index: 0,));
   }
 }
