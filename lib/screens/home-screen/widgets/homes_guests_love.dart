@@ -1,4 +1,5 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
+import 'package:devcademy_flutter/router.dart';
 
 import '../../../http.dart';
 import '../../../theme.dart';
@@ -8,11 +9,7 @@ import 'card_widget.dart';
 class HomesGuestsLove extends StatelessWidget {
   const HomesGuestsLove({
     Key? key,
-    required List<HomeCard> homeCardList,
-  })  : _homeCardList = homeCardList,
-        super(key: key);
-
-  final List<HomeCard> _homeCardList;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,32 +25,23 @@ class HomesGuestsLove extends StatelessWidget {
               color: ThemeColors.mint500,
             ));
           }
-          List<Accommodation> accomodations = snapshot.data;
-
-          for (var accomodation in accomodations) {
-            _homeCardList.add(HomeCard(
-              id: accomodation.id,
-              imageUrl: accomodation.imageUrl,
-              title: accomodation.title,
-              shortDescription: accomodation.shortDescription,
-              longDescription: accomodation.longDescription,
-              location: accomodation.location,
-              postalCode: accomodation.postalCode,
-              price: accomodation.price,
-              categorization: accomodation.categorization,
-              capacity: accomodation.capacity,
-              accommodationType: accomodation.accommodationType,
-              freeCancelation: accomodation.freeCancelation,
-            ));
-          }
+          List<Accommodation> accommodations = snapshot.data;
 
           return SizedBox(
               height: 316,
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(20.0, 8.0, 0, 0),
-                scrollDirection: Axis.horizontal,
-                children: [..._homeCardList],
-              ));
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(20.0),
+                  itemCount: accommodations.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    Accommodation accommodation = accommodations[index];
+                    return GestureDetector(
+                        onTap: () => router.toAccommodationDetailsScreen(
+                            context, accommodation),
+                        child: HomeCard(
+                          accommodation: accommodation,
+                        ));
+                  }));
         }));
   }
 }

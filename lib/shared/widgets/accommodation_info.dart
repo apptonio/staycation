@@ -6,14 +6,14 @@ import 'stars_bar_widget.dart';
 class AccommodationInfo extends StatelessWidget {
   final String title;
   final String location;
-  final int price;
+  final Widget specialData;
   final int categorization;
 
   const AccommodationInfo(
       {Key? key,
       required this.title,
       required this.location,
-      required this.price,
+      required this.specialData,
       required this.categorization})
       : super(key: key);
 
@@ -35,12 +35,8 @@ class AccommodationInfo extends StatelessWidget {
           )),
         ),
         const SizedBox(height: 10),
-        Text(
-          'EUR $price',
-          style: textTheme.bodyText1!.merge(TextStyle(
-            color: ThemeColors.teal800,
-          )),
-        ),
+        specialData
+        ,
         const SizedBox(height: 16),
         StarsBar(categorization: categorization)
       ],

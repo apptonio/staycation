@@ -1,25 +1,16 @@
+import 'package:devcademy_flutter/models/location.dart';
 import 'package:devcademy_flutter/shared/widgets/square_image.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 
 class LocationStack extends StatelessWidget {
-  const LocationStack(
-      {Key? key,
-      required this.id,
-      required this.locationName,
-      required this.postalCode,
-      required this.imageUrl,
-      required this.properties})
-      : super(key: key);
+  const LocationStack({Key? key, required this.location}) : super(key: key);
 
-  final String id;
-  final String locationName;
-  final String postalCode;
-  final String imageUrl;
-  final int properties;
+  final Location location;
 
   @override
   Widget build(BuildContext context) {
+    final int locationProperties = location.properties;
     return (Center(
         child: Stack(
       children: [
@@ -35,19 +26,21 @@ class LocationStack extends StatelessWidget {
                 ],
               ),
             ),
-            child: SquareImage(imageUrl: imageUrl,)),
+            child: SquareImage(
+              imageUrl: location.imageUrl,
+            )),
         Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 16.0, 0.0, 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                locationName,
+                location.locationName,
                 style: textTheme.bodyText1!
                     .merge(TextStyle(color: ThemeColors.white)),
               ),
               Text(
-                "$properties properties",
+                "$locationProperties properties",
                 style: textTheme.bodyText2!
                     .merge(TextStyle(color: ThemeColors.white)),
               )

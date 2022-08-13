@@ -1,53 +1,31 @@
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
+import 'package:devcademy_flutter/shared/widgets/price_info.dart';
 import 'package:devcademy_flutter/shared/widgets/rectangle_image.dart';
 import 'package:flutter/material.dart';
 
-class HomeCard extends StatelessWidget {
-  const HomeCard({
-    Key? key,
-    required this.id,
-    required this.imageUrl,
-    required this.title,
-    required this.shortDescription,
-    required this.longDescription,
-    required this.location,
-    required this.postalCode,
-    required this.price,
-    required this.categorization,
-    required this.capacity,
-    required this.accommodationType,
-    required this.freeCancelation,
-  }) : super(key: key);
+import '../../../models/accommodation.dart';
 
-  final String id;
-  final String imageUrl;
-  final String title;
-  final String shortDescription;
-  final String longDescription;
-  final String location;
-  final String postalCode;
-  final int price;
-  final int categorization;
-  final int capacity;
-  final String accommodationType;
-  final bool freeCancelation;
+class HomeCard extends StatelessWidget {
+  const HomeCard({Key? key, required this.accommodation}) : super(key: key);
+
+  final Accommodation accommodation;
 
   @override
   Widget build(BuildContext context) {
-    return (Center(
+    return Center(
         child: Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RectangleImage(imageUrl: imageUrl),
+                RectangleImage(imageUrl: accommodation.imageUrl),
                 const SizedBox(height: 8),
                 AccommodationInfo(
-                    title: title,
-                    location: location,
-                    price: price,
-                    categorization: categorization)
+                    title: accommodation.title,
+                    location: accommodation.location,
+                    specialData: AccommodationPrice(price: accommodation.price),
+                    categorization: accommodation.categorization)
               ],
-            ))));
+            )));
   }
 }

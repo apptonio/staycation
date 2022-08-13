@@ -1,17 +1,14 @@
-import 'package:devcademy_flutter/screens/home-screen/widgets/card_widget.dart';
-import 'package:devcademy_flutter/shared/widgets/stack_widget.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../router.dart';
 import './widgets/popular_locations.dart';
 import './widgets/homes_guests_love.dart';
 import '../../shared/widgets/app_bar_widget.dart';
 import 'widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<LocationStack> _locationCardList = [];
-  final List<HomeCard> _homeCardList = [];
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +18,18 @@ class HomeScreen extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
               child: Column(children: [
-                const SectionTitle(title: 'Popular locations'),
-            PopularLocations(locationCardList: _locationCardList),
-            const SectionTitle(title: 'Homes guests love'),
-            HomesGuestsLove(homeCardList: _homeCardList)
+            SectionTitle(
+                title: 'Popular locations',
+                route: Routes.popularLocationsListScreen),
+            const PopularLocations(),
+            SectionTitle(
+                title: 'Homes guests love',
+                route: Routes.homesGuestsLoveListScreen),
+            const HomesGuestsLove()
           ])),
         ),
-        bottomNavigationBar: const MyBottomNav());
+        bottomNavigationBar: const MyBottomNav(
+          index: 0,
+        ));
   }
 }

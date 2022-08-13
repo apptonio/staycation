@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../http.dart';
 import '../../../models/location.dart';
+import '../../../router.dart';
 import '../../../theme.dart';
 import '../../../shared/widgets/stack_widget.dart';
 
 class PopularLocations extends StatelessWidget {
   const PopularLocations({
     Key? key,
-    required List<LocationStack> locationCardList,
-  })  : _locationCardList = locationCardList,
-        super(key: key);
-
-  final List<LocationStack> _locationCardList;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +26,23 @@ class PopularLocations extends StatelessWidget {
           }
           List<Location> locations = snapshot.data;
 
-          for (var location in locations) {
-            _locationCardList.add(LocationStack(
-              id: location.id,
-              locationName: location.locationName,
-              imageUrl: location.imageUrl,
-              properties: location.properties,
-              postalCode: location.postalCode,
-            ));
-          }
-
           return GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            children: _locationCardList,
-          );
+              crossAxisCount: 2,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
+              padding: const EdgeInsets.all(20.0),
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: [
+                ...locations
+                    .map((location) => GestureDetector(
+                        onTap: () => router.toLocationHomesScreen(
+                            context, location),
+                        child: LocationStack(
+                          location: location,
+                        )))
+                    .toList(),
+              ]);
         }));
   }
 }
