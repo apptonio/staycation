@@ -18,7 +18,7 @@ class MyBookingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("My Bookings", false, false),
+        appBar: MyAppBar(title: "My Bookings", showBackIcon: false, showSearchIcon: false),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(

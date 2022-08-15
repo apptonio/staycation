@@ -23,7 +23,7 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
     Location location = arguments.location;
 
     return Scaffold(
-        appBar: MyAppBar("Homes Guests Love", true, true),
+        appBar: MyAppBar(title: "Homes Guests Love", showBackIcon: true, showSearchIcon: true),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(

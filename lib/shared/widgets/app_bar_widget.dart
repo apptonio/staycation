@@ -11,7 +11,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
   final bool showBackIcon;
   final bool showSearchIcon;
 
-  MyAppBar(this.title, this.showBackIcon, this.showSearchIcon, {Key? key})
+  MyAppBar({required this.title, required this.showBackIcon, required this.showSearchIcon, Key? key})
       : preferredSize = const Size.fromHeight(50.0),
         super(key: key);
 

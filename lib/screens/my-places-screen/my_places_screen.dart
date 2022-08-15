@@ -17,7 +17,7 @@ class MyPlacesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("My Places", false, false),
+        appBar: MyAppBar(title: "My Places",showBackIcon: false, showSearchIcon: false),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(child: Column(children: [
@@ -84,7 +84,7 @@ class MyPlacesScreen extends StatelessWidget {
                     });
               }),
           Padding(
-              padding: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.fromLTRB(0, 0, 20.0, 20.0),
               child: Align(
                   alignment: Alignment.bottomRight,
                   child: FloatingActionButton(
