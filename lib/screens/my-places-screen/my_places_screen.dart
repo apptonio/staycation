@@ -20,7 +20,7 @@ class MyPlacesScreen extends StatelessWidget {
         appBar: MyAppBar("My Places", false, false),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-            child: Column(children: [
+            child: SingleChildScrollView(child: Column(children: [
           FutureBuilder(
               future: http.getMyPlaces(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -95,7 +95,7 @@ class MyPlacesScreen extends StatelessWidget {
                     ),
                     onPressed: () {},
                   )))
-        ])),
+        ]))),
         bottomNavigationBar: const MyBottomNav(index: 2));
   }
 }
