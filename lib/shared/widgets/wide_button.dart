@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme.dart';
+import '../../theme.dart';
 
-class BookButton extends StatelessWidget {
-  const BookButton({Key? key}) : super(key: key);
+class WideButton extends StatelessWidget {
+
+  final String title;
+  final Function action;
+  const WideButton({Key? key, required this.title, required this.action}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +20,8 @@ class BookButton extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   primary: ThemeColors.mint400,
                 ),
-                onPressed: () {},
-                child: Text("BOOK YOUR STAY",
+                onPressed: () => action,
+                child: Text(title,
                     style: textTheme.button
                         ?.merge(TextStyle(color: ThemeColors.white))),
               ),

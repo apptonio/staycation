@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../theme.dart';
-import 'stars_bar_widget.dart';
+import 'stars_bar.dart';
 
 class AccommodationInfo extends StatelessWidget {
   final String title;
@@ -35,8 +35,7 @@ class AccommodationInfo extends StatelessWidget {
           )),
         ),
         const SizedBox(height: 10),
-        specialData
-        ,
+        specialData,
         const SizedBox(height: 16),
         StarsBar(categorization: categorization)
       ],

@@ -1,6 +1,6 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/providers/location_filter_arguments.dart';
-import 'package:devcademy_flutter/screens/homes-screen/widgets/horizontal_card_widget.dart';
+import 'package:devcademy_flutter/shared/widgets/horizontal_card.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/price_info.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import '../../http.dart';
 import '../../models/location.dart';
 import '../../router.dart';
-import '../../shared/widgets/app_bar_widget.dart';
+import '../../shared/widgets/app_bar.dart';
 import '../../theme.dart';
 
 class HomesGuestsLoveListScreen extends StatelessWidget {
@@ -73,7 +73,7 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                                           accommodation.categorization,
                                       title: accommodation.title,
                                       location: accommodation.location,
-                                      specialData: AccommodationPrice(
+                                      specialData: Price(
                                         price: accommodation.price,
                                       )),
                                 ));

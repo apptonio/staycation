@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../assets.dart';
-import '../../../shared/widgets/stars_bar_widget.dart';
+import '../../../shared/widgets/stars_bar.dart';
 import '../../../theme.dart';
 
 class DetailsSheet extends StatelessWidget {

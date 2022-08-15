@@ -3,7 +3,7 @@ import '../../../http.dart';
 import '../../../models/location.dart';
 import '../../../router.dart';
 import '../../../theme.dart';
-import '../../../shared/widgets/stack_widget.dart';
+import '../../../shared/widgets/location_stack.dart';
 
 class PopularLocations extends StatelessWidget {
   const PopularLocations({
@@ -36,8 +36,8 @@ class PopularLocations extends StatelessWidget {
               children: [
                 ...locations
                     .map((location) => GestureDetector(
-                        onTap: () => router.toLocationHomesScreen(
-                            context, location),
+                        onTap: () =>
+                            router.toLocationHomesScreen(context, location),
                         child: LocationStack(
                           location: location,
                         )))

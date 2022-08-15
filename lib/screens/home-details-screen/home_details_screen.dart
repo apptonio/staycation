@@ -1,6 +1,6 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/providers/home_details_arguments.dart';
-import 'package:devcademy_flutter/screens/home-details-screen/widgets/book_button.dart';
+import 'package:devcademy_flutter/shared/widgets/wide_button.dart';
 import 'package:devcademy_flutter/screens/home-details-screen/widgets/details_sheet.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +50,8 @@ class HomeDetailsScreen extends StatelessWidget {
               capacity: accommodation.capacity,
               accommodationType: accommodation.accommodationType,
               freeCancelation: accommodation.freeCancelation),
-          const Align(
-              alignment: AlignmentDirectional.bottomCenter, child: BookButton())
+            Align(
+              alignment: AlignmentDirectional.bottomCenter, child: WideButton(title: "BOOK YOUR STAY", action: () {}  ))
         ],
       ),
     )));

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../theme.dart';
 
-class AccommodationPrice extends StatelessWidget {
+class Price extends StatelessWidget {
   final int price;
-  const AccommodationPrice({Key? key, required this.price}) : super(key: key);
+  const Price({Key? key, required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

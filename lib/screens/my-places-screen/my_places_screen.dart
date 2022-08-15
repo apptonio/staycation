@@ -1,15 +1,15 @@
 import 'package:devcademy_flutter/assets.dart';
 import 'package:devcademy_flutter/http.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
-import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
+import 'package:devcademy_flutter/shared/widgets/bottom_nav.dart';
 import 'package:devcademy_flutter/shared/widgets/description_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../models/accommodation.dart';
-import '../../shared/widgets/app_bar_widget.dart';
+import '../../shared/widgets/app_bar.dart';
 import '../../theme.dart';
-import '../homes-screen/widgets/horizontal_card_widget.dart';
+import '../../shared/widgets/horizontal_card.dart';
 
 class MyPlacesScreen extends StatelessWidget {
   const MyPlacesScreen({Key? key}) : super(key: key);

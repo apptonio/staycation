@@ -11,7 +11,11 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
   final bool showBackIcon;
   final bool showSearchIcon;
 
-  MyAppBar({required this.title, required this.showBackIcon, required this.showSearchIcon, Key? key})
+  MyAppBar(
+      {required this.title,
+      required this.showBackIcon,
+      required this.showSearchIcon,
+      Key? key})
       : preferredSize = const Size.fromHeight(50.0),
         super(key: key);
 
@@ -22,7 +26,8 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: Visibility(
           visible: showBackIcon ? true : false,
           child: IconButton(
-              onPressed: () => router.goBack(context), icon: SvgPicture.asset(Assets.icons.back))),
+              onPressed: () => router.goBack(context),
+              icon: SvgPicture.asset(Assets.icons.back))),
       title: Text(title,
           style: textTheme.headline6!
               .merge(TextStyle(color: ThemeColors.teal800))),
