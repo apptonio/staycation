@@ -18,12 +18,16 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocationFilterArguments arguments =
-        ModalRoute.of(context)!.settings.arguments as LocationFilterArguments;
-    Location location = arguments.location;
+    final LocationFilterArguments? arguments =
+        ModalRoute.of(context)?.settings.arguments as LocationFilterArguments?;
+
+    Location? location = arguments?.location;
 
     return Scaffold(
-        appBar: MyAppBar(title: "Homes Guests Love", showBackIcon: true, showSearchIcon: true),
+        appBar: MyAppBar(
+            title: "Homes Guests Love",
+            showBackIcon: true,
+            showSearchIcon: true),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(
@@ -41,13 +45,14 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                       }
                       List<Accommodation> accommodations = snapshot.data;
 
-                      String accommodationLocation = location.locationName;
+                      String? accommodationLocation = location?.locationName;
 
-                      accommodations = accommodations
-                          .where((element) =>
-                              element.location == accommodationLocation)
-                          .toList();
-
+                      if (accommodationLocation != null) {
+                        accommodations = accommodations
+                            .where((element) =>
+                                element.location == accommodationLocation)
+                            .toList();
+                      }
                       return ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
