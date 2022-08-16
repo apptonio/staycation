@@ -12,6 +12,7 @@ class Routes {
   static String homeDetailsScreen = 'homeDetailsScreen';
   static String myBookingsScreen = 'MyBookingsScreen';
   static String myPlacesScreen = 'myPlacesScreen';
+  static String newPlaceScreen = 'newPlaceScreen';
 }
 
 class Router {

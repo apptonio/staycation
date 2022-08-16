@@ -1,5 +1,6 @@
 import 'package:devcademy_flutter/assets.dart';
 import 'package:devcademy_flutter/http.dart';
+import 'package:devcademy_flutter/router.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/bottom_nav.dart';
 import 'package:devcademy_flutter/shared/widgets/description_info.dart';
@@ -96,7 +97,8 @@ class MyPlacesScreen extends StatelessWidget {
                       Assets.icons.add,
                       color: ThemeColors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () =>
+                        router.navigateTo(context, Routes.newPlaceScreen),
                   )))
         ])),
         bottomNavigationBar: const MyBottomNav(index: 2));
