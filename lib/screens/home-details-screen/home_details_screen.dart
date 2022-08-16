@@ -24,26 +24,26 @@ class HomeDetailsScreen extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             body: SafeArea(
-      child: Stack(
-        children: [
-          Image.network(
-            accommodation.imageUrl,
-            width: double.infinity,
+          child: Stack(
+            children: [
+              Image.network(
+                accommodation.imageUrl,
+                width: double.infinity,
+              ),
+              GestureDetector(
+                  onTap: () => router.goBack(context),
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 0),
+                      child: SvgPicture.asset(
+                        Assets.icons.back,
+                        color: ThemeColors.teal800,
+                      ))),
+              DetailsSheet(accommodation: accommodation),
+              Align(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  child: WideButton(title: "BOOK YOUR STAY", action: () {}))
+            ],
           ),
-          GestureDetector(
-              onTap: () => router.goBack(context),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 8.0, 0, 0),
-                  child: SvgPicture.asset(
-                    Assets.icons.back,
-                    color: ThemeColors.teal800,
-                  ))),
-          DetailsSheet(
-              accommodation: accommodation),
-            Align(
-              alignment: AlignmentDirectional.bottomCenter, child: WideButton(title: "BOOK YOUR STAY", action: () {}  ))
-        ],
-      ),
-    )));
+        )));
   }
 }
