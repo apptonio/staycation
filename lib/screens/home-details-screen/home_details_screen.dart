@@ -39,17 +39,7 @@ class HomeDetailsScreen extends StatelessWidget {
                     color: ThemeColors.teal800,
                   ))),
           DetailsSheet(
-              id: accommodation.id,
-              title: accommodation.title,
-              shortDescription: accommodation.shortDescription,
-              longDescription: accommodation.longDescription,
-              location: accommodation.location,
-              postalCode: accommodation.postalCode,
-              price: accommodation.price,
-              categorization: accommodation.categorization,
-              capacity: accommodation.capacity,
-              accommodationType: accommodation.accommodationType,
-              freeCancelation: accommodation.freeCancelation),
+              accommodation: accommodation),
             Align(
               alignment: AlignmentDirectional.bottomCenter, child: WideButton(title: "BOOK YOUR STAY", action: () {}  ))
         ],
