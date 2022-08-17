@@ -15,6 +15,11 @@ dependencies:
     sdk: flutter
   flutter_svg: ^0.22.0
   freezed_annotation: any
+  json_serializable: ^6.2.0
+  build_runner: ^2.1.11
+  freezed: ^2.0.3+1
+  flutter_form_builder: ^7.3.0
+  form_builder_validators: ^8.1.1
 
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
@@ -24,9 +29,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.2.0
-  build_runner: ^2.1.11
-  freezed: ^2.0.3+1
   
   flutter_lints: ^2.0.0
 

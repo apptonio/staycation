@@ -8,8 +8,9 @@ class NewPlaceAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
   final String title;
+  final Function action;
 
-  NewPlaceAppBar({required this.title, Key? key})
+  NewPlaceAppBar({required this.title, required this.action, Key? key})
       : preferredSize = const Size.fromHeight(50.0),
         super(key: key);
 
@@ -26,10 +27,9 @@ class NewPlaceAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: false,
       actions: [
         TextButton(
-          onPressed: () => {
-            // TO-DO: Saving
-            router.navigateTo(context, Routes.myPlacesScreen),
-          },
+          onPressed: 
+            () => action
+          ,
           child: Text("SAVE",
               style: textTheme.button!
                   .merge(TextStyle(color: ThemeColors.teal800))),
