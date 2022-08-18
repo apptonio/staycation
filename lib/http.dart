@@ -80,6 +80,13 @@ class HTTP {
         .map<Accommodation>((json) => Accommodation.fromJson(json))
         .toList();
   }
+
+  Future<Response> addNewPlace(Map<String, dynamic> map) {
+    return client.post(
+      'myplaces',
+      data: map,
+    );
+  }
 }
 
 final http = HTTP();

@@ -5,6 +5,8 @@ import 'package:devcademy_flutter/screens/my-places-screen/my_places_screen.dart
 import 'package:devcademy_flutter/screens/new-place-screen/new_place_screen.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'screens/home-details-screen/home_details_screen.dart';
 import 'screens/homes-screen/homes_guests_love_list_screen.dart';
@@ -30,6 +32,11 @@ class App extends StatelessWidget {
         Routes.myPlacesScreen: (context) => const MyPlacesScreen(),
         Routes.newPlaceScreen: (context) => const NewPlaceScreen()
       },
+      supportedLocales: [...FormBuilderLocalizations.delegate.supportedLocales],
+      localizationsDelegates: const [
+        ...GlobalMaterialLocalizations.delegates,
+        FormBuilderLocalizations.delegate,
+      ],
     );
   }
 }

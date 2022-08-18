@@ -8,7 +8,7 @@ class NewPlaceAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
   final String title;
-  final Function action;
+  final VoidCallback action;
 
   NewPlaceAppBar({required this.title, required this.action, Key? key})
       : preferredSize = const Size.fromHeight(50.0),
@@ -28,7 +28,7 @@ class NewPlaceAppBar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         TextButton(
           onPressed: 
-            () => action
+            action
           ,
           child: Text("SAVE",
               style: textTheme.button!

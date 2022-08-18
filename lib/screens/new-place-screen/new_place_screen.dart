@@ -1,5 +1,6 @@
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
+import '../../http.dart';
 import '../../router.dart';
 import 'widgets/new_place_app_bar.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,17 +15,19 @@ class NewPlaceScreen extends StatefulWidget {
 class _NewPlaceScreenState extends State<NewPlaceScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
 
-  late FocusNode _listingNameFocusNode;
+  final _listingNameFocusNode = FocusNode();
   final _shortDescFocusNode = FocusNode();
   final _longDescFocusNode = FocusNode();
   final _categorizationFocusNode = FocusNode();
-  final _accommodationTypeFocusNode = FocusNode();
   final _capacityFocusNode = FocusNode();
   final _priceFocusNode = FocusNode();
   final _locationFocusNode = FocusNode();
   final _postalCodeFocusNode = FocusNode();
   final _imageUrlFocusNode = FocusNode();
-  final _freeCancellationFocusNode = FocusNode();
+
+  final _priceController = TextEditingController();
+  final _categorizationController = TextEditingController();
+  final _capacityController = TextEditingController();
 
   @override
   void dispose() {
@@ -32,13 +35,12 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
     _shortDescFocusNode.dispose();
     _longDescFocusNode.dispose();
     _categorizationFocusNode.dispose();
-    super.dispose();
-  }
+    _priceFocusNode.dispose();
+    _locationFocusNode.dispose();
+    _postalCodeFocusNode.dispose();
+    _imageUrlFocusNode.dispose();
 
-  @override
-  void initState() {
-    _listingNameFocusNode = FocusNode();
-    super.initState();
+    super.dispose();
   }
 
   @override
@@ -47,20 +49,49 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
             appBar: NewPlaceAppBar(
-              title: "Add new place",
-              action: () {
-                _formKey.currentState?.save();
+                title: "Add new place",
+                action: () {
+                  final validationCheck = _formKey.currentState?.validate();
 
-                //ScaffoldMessengerState.showSnackBar(context);
+                  if (validationCheck != null && validationCheck) {
+                    int price = int.parse(_priceController.text);
+                    int categorization =
+                        int.parse(_categorizationController.text);
+                    int capacity = int.parse(_capacityController.text);
 
-                final formData = _formKey.currentState?.value;
+                    Map<String, dynamic> accommodation = {
+                      'title': _formKey.currentState?.fields['title']?.value,
+                      'location':
+                          _formKey.currentState?.fields['location']?.value,
+                      'imageUrl':
+                          _formKey.currentState?.fields['imageUrl']?.value,
+                      'price': price,
+                      'categorization': categorization,
+                      'longDescription': _formKey
+                          .currentState?.fields['longDescription']?.value,
+                      'shortDescription': _formKey
+                          .currentState?.fields['shortDescription']?.value,
+                      'capacity': capacity,
+                      'postalCode':
+                          _formKey.currentState?.fields['postalCode']?.value,
+                      'freeCancelation': _formKey
+                          .currentState?.fields['freeCancelation']?.value,
+                      'accommodationType': _formKey
+                          .currentState?.fields['accommodationType']?.value,
+                    };
 
-                print(formData);
+                    _formKey.currentState?.save();
+                    print(accommodation);
+                    FocusScope.of(context).unfocus();
+                    http.addNewPlace(accommodation);
+                    router.navigateTo(context, Routes.myPlacesScreen);
+                  } else {
+                    final formData = _formKey.currentState?.value;
 
-                FocusScope.of(context).unfocus();
-                router.navigateTo(context, Routes.myPlacesScreen);
-              },
-            ),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Validation failed! Data: $formData')));
+                  }
+                }),
             resizeToAvoidBottomInset: false,
             body: SafeArea(
               child: Padding(
@@ -69,6 +100,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                       key: _formKey,
                       child: SingleChildScrollView(
                         child: Column(children: [
+                          const SizedBox(height: 10),
                           FormBuilderTextField(
                             focusNode: _listingNameFocusNode,
                             onTap: () {
@@ -79,13 +111,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 currentFocus.unfocus();
                               }
                             },
-                            name: 'Listing name',
+                            name: 'title',
                             decoration: InputDecoration(
                               labelText: 'Listing name',
                               labelStyle: TextStyle(
                                   color: _listingNameFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -95,6 +127,9 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            validator: FormBuilderValidators.required(),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
@@ -107,13 +142,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 currentFocus.unfocus();
                               }
                             },
-                            name: 'Short description',
+                            name: 'shortDescription',
                             decoration: InputDecoration(
                               labelText: 'Short description',
                               labelStyle: TextStyle(
                                   color: _shortDescFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -123,17 +158,9 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
-                            textInputAction: TextInputAction.next,
-                            onSubmitted: (_) {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                              FocusScope.of(context)
-                                  .requestFocus(_longDescFocusNode);
-                            },
+                            validator: FormBuilderValidators.required(),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
@@ -146,7 +173,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 currentFocus.unfocus();
                               }
                             },
-                            name: 'Long description',
+                            name: 'longDescription',
                             maxLines: 4,
                             keyboardType: TextInputType.multiline,
                             decoration: InputDecoration(
@@ -154,7 +181,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               labelStyle: TextStyle(
                                   color: _longDescFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -164,6 +191,9 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            validator: FormBuilderValidators.required(),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
@@ -177,13 +207,14 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             keyboardType: TextInputType.number,
-                            name: 'Categorization',
+                            controller: _categorizationController,
+                            name: 'categorization',
                             decoration: InputDecoration(
                               labelText: 'Categorization (Number of stars)',
                               labelStyle: TextStyle(
                                   color: _categorizationFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -193,17 +224,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
-                            textInputAction: TextInputAction.next,
-                            onSubmitted: (_) {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                              FocusScope.of(context)
-                                  .requestFocus(_accommodationTypeFocusNode);
-                            },
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.integer(),
+                              FormBuilderValidators.min(1),
+                              FormBuilderValidators.max(5)
+                            ]),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           const SizedBox(height: 20),
                           FormBuilderDropdown(
@@ -217,19 +244,18 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                             },
                             items: const [
                               DropdownMenuItem(
-                                value: 'apartment',
+                                value: 'Apartment',
                                 child: Text('Apartment'),
                               ),
                               DropdownMenuItem(
-                                value: 'room',
+                                value: 'Room',
                                 child: Text('Room'),
                               ),
                             ],
-                            focusNode: _accommodationTypeFocusNode,
-                            name: 'Accommodation type',
+                            name: 'accommodationType',
                             decoration: InputDecoration(
                               labelText: 'Accommodation type',
-                              labelStyle: TextStyle(color: ThemeColors.gray200),
+                              labelStyle: TextStyle(color: ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -237,6 +263,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
+                            controller: _capacityController,
                             focusNode: _capacityFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -246,13 +273,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 currentFocus.unfocus();
                               }
                             },
-                            name: 'Capacity',
+                            name: 'capacity',
                             decoration: InputDecoration(
                               labelText: 'Capacity',
                               labelStyle: TextStyle(
                                   color: _capacityFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -262,9 +289,17 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.numeric(),
+                              FormBuilderValidators.min(1),
+                              FormBuilderValidators.max(4)
+                            ]),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
+                            controller: _priceController,
                             focusNode: _priceFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -274,13 +309,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 currentFocus.unfocus();
                               }
                             },
-                            name: 'Price',
+                            name: 'price',
                             decoration: InputDecoration(
                               labelText: 'Price',
                               labelStyle: TextStyle(
                                   color: _priceFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -290,6 +325,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.numeric(),
+                              FormBuilderValidators.min(50),
+                              FormBuilderValidators.max(10000)
+                            ]),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           const SizedBox(height: 20),
                           Row(
@@ -305,13 +347,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                name: 'Location',
+                                name: 'location',
                                 decoration: InputDecoration(
                                   labelText: 'Location',
                                   labelStyle: TextStyle(
                                       color: _locationFocusNode.hasFocus
                                           ? ThemeColors.coral500
-                                          : ThemeColors.gray200),
+                                          : ThemeColors.gray500),
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: ThemeColors.gray200)),
@@ -321,6 +363,12 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                     ),
                                   ),
                                 ),
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.minLength(2),
+                                  FormBuilderValidators.maxLength(20),
+                                ]),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                               )),
                               const SizedBox(width: 20),
                               Expanded(
@@ -334,13 +382,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                name: 'Postal code',
+                                name: 'postalCode',
                                 decoration: InputDecoration(
                                   labelText: 'Postal code',
                                   labelStyle: TextStyle(
                                       color: _postalCodeFocusNode.hasFocus
                                           ? ThemeColors.coral500
-                                          : ThemeColors.gray200),
+                                          : ThemeColors.gray500),
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: ThemeColors.gray200)),
@@ -350,6 +398,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                     ),
                                   ),
                                 ),
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.numeric(),
+                                  FormBuilderValidators.min(10000),
+                                  FormBuilderValidators.max(99999),
+                                ]),
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                               )),
                             ],
                           ),
@@ -364,13 +419,13 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 currentFocus.unfocus();
                               }
                             },
-                            name: 'Listing image URL',
+                            name: 'imageUrl',
                             decoration: InputDecoration(
                               labelText: 'Listing image URL',
                               labelStyle: TextStyle(
                                   color: _imageUrlFocusNode.hasFocus
                                       ? ThemeColors.coral500
-                                      : ThemeColors.gray200),
+                                      : ThemeColors.gray500),
                               border: OutlineInputBorder(
                                   borderSide:
                                       BorderSide(color: ThemeColors.gray200)),
@@ -380,10 +435,15 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            validator: FormBuilderValidators.url(),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                           ),
                           FormBuilderSwitch(
-                            name: 'Free cancellation available',
-                            title: Text('Free cancellation available', style: textTheme.bodyText1),
+                            name: 'freeCancelation',
+                            initialValue: false,
+                            title: Text('Free cancellation available',
+                                style: textTheme.bodyText1),
                             decoration:
                                 const InputDecoration(border: InputBorder.none),
                             activeTrackColor: ThemeColors.mint200,
