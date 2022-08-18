@@ -43,6 +43,18 @@ class Router {
           LocationFilterArguments(location: location),
     );
   }
+
+  Future<void> toEditNewListingScreen(
+      BuildContext context, Accommodation accommodation) {
+    return Navigator.pushNamed(
+      context,
+      Routes.newPlaceScreen,
+      arguments:
+          HomeDetailsArguments(accommodation: accommodation),
+    );
+  }
 }
+
+
 
 Router router = Router();

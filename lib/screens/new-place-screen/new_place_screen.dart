@@ -1,3 +1,5 @@
+import 'package:devcademy_flutter/models/accommodation.dart';
+import 'package:devcademy_flutter/providers/home_details_arguments.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 import '../../http.dart';
@@ -13,6 +15,9 @@ class NewPlaceScreen extends StatefulWidget {
 }
 
 class _NewPlaceScreenState extends State<NewPlaceScreen> {
+
+  
+
   final _formKey = GlobalKey<FormBuilderState>();
 
   final _listingNameFocusNode = FocusNode();
@@ -45,6 +50,10 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final HomeDetailsArguments? arguments =
+        ModalRoute.of(context)?.settings.arguments as HomeDetailsArguments?;
+    Accommodation? editAccommodation = arguments?.accommodation;
+
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
@@ -81,15 +90,21 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                     };
 
                     _formKey.currentState?.save();
-                    print(accommodation);
                     FocusScope.of(context).unfocus();
-                    http.addNewPlace(accommodation);
-                    router.navigateTo(context, Routes.myPlacesScreen);
-                  } else {
-                    final formData = _formKey.currentState?.value;
 
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Validation failed! Data: $formData')));
+                    //TODO ako ima akomodejtn onda edit radi
+                    http.addNewPlace(accommodation);
+                    Future.delayed(const Duration(milliseconds: 1000), () {
+                      router.navigateTo(context, Routes.myPlacesScreen);
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Validation failed! Check your inputs!'),
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.all(20.0),
+                      ),
+                    );
                   }
                 }),
             resizeToAvoidBottomInset: false,
@@ -127,7 +142,10 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
-                            validator: FormBuilderValidators.required(),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.minLength(1),
+                              FormBuilderValidators.maxLength(30),
+                            ]),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                           ),
@@ -158,7 +176,10 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
-                            validator: FormBuilderValidators.required(),
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.minLength(1),
+                              FormBuilderValidators.maxLength(100),
+                            ]),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                           ),
@@ -174,8 +195,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'longDescription',
-                            maxLines: 4,
-                            keyboardType: TextInputType.multiline,
                             decoration: InputDecoration(
                               labelText: 'Long description',
                               labelStyle: TextStyle(
@@ -191,7 +210,12 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
-                            validator: FormBuilderValidators.required(),
+                            maxLines: 4,
+                            keyboardType: TextInputType.multiline,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.minLength(1),
+                              FormBuilderValidators.maxLength(500),
+                            ]),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                           ),
@@ -289,6 +313,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            keyboardType: TextInputType.number,
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.numeric(),
                               FormBuilderValidators.min(1),
@@ -325,9 +350,10 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                 ),
                               ),
                             ),
+                            keyboardType: TextInputType.number,
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.numeric(),
-                              FormBuilderValidators.min(50),
+                              FormBuilderValidators.min(10),
                               FormBuilderValidators.max(10000)
                             ]),
                             autovalidateMode:
@@ -364,7 +390,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                   ),
                                 ),
                                 validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.minLength(2),
+                                  FormBuilderValidators.minLength(1),
                                   FormBuilderValidators.maxLength(20),
                                 ]),
                                 autovalidateMode:
@@ -399,9 +425,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                   ),
                                 ),
                                 validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.numeric(),
-                                  FormBuilderValidators.min(10000),
-                                  FormBuilderValidators.max(99999),
+                                  FormBuilderValidators.minLength(3),
+                                  FormBuilderValidators.maxLength(20),
                                 ]),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,

@@ -49,42 +49,49 @@ class MyPlacesScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, index) {
                           Accommodation accommodation = accommodations[index];
 
-                          //if (accommodations.isNotEmpty) {
-
-                          return Dismissible(
-                              key: Key(accommodations[index].toString()),
-                              onDismissed: (direction) =>
-                                  accommodations.removeAt(index),
-                              //confirmDismiss: (direction) async {
-                              // ignore: todo
-                              // TODO: user confirmation
-                              //},
-                              background: Container(
-                                padding: const EdgeInsets.only(right: 40),
-                                color: ThemeColors.red500,
-                                child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: SvgPicture.asset(Assets.icons.delete,
-                                        color: ThemeColors.white)),
-                              ),
-                              child: GestureDetector(
-                                  onTap: () => {},
-                                  child: HorizontalCard(
-                                      accommodation: accommodation,
-                                      typeOfInfo: AccommodationInfo(
-                                        title: accommodation.title,
-                                        location: accommodation.location,
-                                        categorization:
-                                            accommodation.categorization,
-                                        specialData: const DescriptionInfo(
-                                            description:
-                                                "Renting the entire unit"),
-                                      ))));
-                          //} else {
-                          //   return const Center(
-                          //     child: Text('List empty'),
-                          //   );
-                          // }
+                          if (accommodations.isNotEmpty) {
+                            return Dismissible(
+                                key: Key(accommodations[index].toString()),
+                                onDismissed: (direction) => {
+                                      accommodations.removeAt(index),
+                                      http.deletePlace(accommodation.id),
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            'Deleted ${accommodation.title} listing!'),
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: const EdgeInsets.all(20.0),
+                                      ))
+                                    },
+                                background: Container(
+                                  padding: const EdgeInsets.only(right: 40),
+                                  color: ThemeColors.red500,
+                                  child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: SvgPicture.asset(
+                                          Assets.icons.delete,
+                                          color: ThemeColors.white)),
+                                ),
+                                child: GestureDetector(
+                                    onTap: () => {
+                                      router.toEditNewListingScreen(context, accommodation)
+                                    },
+                                    child: HorizontalCard(
+                                        accommodation: accommodation,
+                                        typeOfInfo: AccommodationInfo(
+                                          title: accommodation.title,
+                                          location: accommodation.location,
+                                          categorization:
+                                              accommodation.categorization,
+                                          specialData: const DescriptionInfo(
+                                              description:
+                                                  "Renting the entire unit"),
+                                        ))));
+                          } else {
+                            return const Center(
+                              child: Text('You have no places!'),
+                            );
+                          }
                         });
                   })),
           Padding(
