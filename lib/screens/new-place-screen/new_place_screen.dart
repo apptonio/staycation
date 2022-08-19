@@ -27,7 +27,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
   final _postalCodeFocusNode = FocusNode();
   final _imageUrlFocusNode = FocusNode();
 
-
   @override
   void dispose() {
     _listingNameFocusNode.dispose();
@@ -48,6 +47,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
         ModalRoute.of(context)?.settings.arguments as HomeDetailsArguments?;
     Accommodation? editAccommodation = arguments?.accommodation;
 
+    bool editScreen = editAccommodation != null;
+
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
@@ -57,9 +58,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                   final validationCheck = _formKey.currentState?.validate();
 
                   if (validationCheck != null && validationCheck) {
-
                     Accommodation accommodation = Accommodation(
-                        id: '',
+                        id: editAccommodation?.id ?? '',
                         imageUrl:
                             _formKey.currentState?.fields['imageUrl']?.value,
                         title: _formKey.currentState?.fields['title']?.value,
@@ -82,17 +82,26 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                         freeCancelation: _formKey
                             .currentState?.fields['freeCancelation']?.value);
 
-
                     _formKey.currentState?.save();
                     FocusScope.of(context).unfocus();
 
-                    // if(editAccommodation!=null) {
-                    //   http.editPlace(accommodation)
-                    // }
+                    editScreen
+                        ? http.editPlace(accommodation)
+                        : http.addNewPlace(accommodation);
 
-                    http.addNewPlace(accommodation);
                     Future.delayed(const Duration(milliseconds: 1000), () {
                       router.navigateTo(context, Routes.myPlacesScreen);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: editScreen
+                              ? Text(
+                                  'Edited listing ${editAccommodation.id}')
+                              : Text(
+                                  'Added new listing ${_formKey.currentState?.fields['title']?.value}'),
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.all(20.0),
+                        ),
+                      );
                     });
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -110,6 +119,21 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: FormBuilder(
                       key: _formKey,
+                      initialValue: {
+                        'title': editAccommodation?.title,
+                        'shortDescription': editAccommodation?.longDescription,
+                        'longDescription': editAccommodation?.shortDescription,
+                        'imageUrl': editAccommodation?.imageUrl,
+                        'categorization':
+                            editAccommodation?.categorization.toString(),
+                        'accommodationType':
+                            editAccommodation?.accommodationType,
+                        'capacity': editAccommodation?.capacity.toString(),
+                        'price': editAccommodation?.price.toString(),
+                        'location': editAccommodation?.location,
+                        'postalCode': editAccommodation?.postalCode.toString(),
+                        'freeCancelation': editAccommodation?.freeCancelation,
+                      },
                       child: SingleChildScrollView(
                         child: Column(children: [
                           const SizedBox(height: 10),
@@ -124,7 +148,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'title',
-                            
                             decoration: InputDecoration(
                               labelText: 'Listing name',
                               labelStyle: TextStyle(
@@ -149,7 +172,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                           
                             focusNode: _shortDescFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -194,7 +216,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'longDescription',
-                            
                             decoration: InputDecoration(
                               labelText: 'Long description',
                               labelStyle: TextStyle(
@@ -277,8 +298,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               ),
                             ],
                             name: 'accommodationType',
-                        
-                        
                             decoration: InputDecoration(
                               labelText: 'Accommodation type',
                               labelStyle: TextStyle(color: ThemeColors.gray500),
@@ -300,8 +319,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'capacity',
-                            
-                            
+
                             decoration: InputDecoration(
                               labelText: 'Capacity',
                               labelStyle: TextStyle(
@@ -339,7 +357,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'price',
-                          
+
                             decoration: InputDecoration(
                               labelText: 'Price',
                               labelStyle: TextStyle(
@@ -379,8 +397,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                   }
                                 },
                                 name: 'location',
-                                
-                                
                                 decoration: InputDecoration(
                                   labelText: 'Location',
                                   labelStyle: TextStyle(
@@ -416,8 +432,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                   }
                                 },
                                 name: 'postalCode',
-                                
-                                
                                 decoration: InputDecoration(
                                   labelText: 'Postal code',
                                   labelStyle: TextStyle(
@@ -454,7 +468,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'imageUrl',
-                        
                             decoration: InputDecoration(
                               labelText: 'Listing image URL',
                               labelStyle: TextStyle(
@@ -476,8 +489,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           FormBuilderSwitch(
                             name: 'freeCancelation',
-                            
-                          
                             title: Text('Free cancellation available',
                                 style: textTheme.bodyText1),
                             decoration:
