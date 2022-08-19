@@ -3,6 +3,7 @@ import 'package:devcademy_flutter/screens/home-screen/home_screen.dart';
 import 'package:devcademy_flutter/screens/my-bookings-screen/my_bookings_screen.dart';
 import 'package:devcademy_flutter/screens/my-places-screen/my_places_screen.dart';
 import 'package:devcademy_flutter/screens/new-place-screen/new_place_screen.dart';
+import 'package:devcademy_flutter/screens/search-screen/search_screen.dart';
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -30,7 +31,8 @@ class App extends StatelessWidget {
         Routes.homeDetailsScreen: (context) => const HomeDetailsScreen(),
         Routes.myBookingsScreen: ((context) => const MyBookingsScreen()),
         Routes.myPlacesScreen: (context) => const MyPlacesScreen(),
-        Routes.newPlaceScreen: (context) => const NewPlaceScreen()
+        Routes.newPlaceScreen: (context) => const NewPlaceScreen(),
+        Routes.searchScreen: (context) => const SearchScreen()
       },
       supportedLocales: [...FormBuilderLocalizations.delegate.supportedLocales],
       localizationsDelegates: const [

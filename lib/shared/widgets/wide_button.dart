@@ -5,7 +5,7 @@ import '../../theme.dart';
 class WideButton extends StatelessWidget {
 
   final String title;
-  final Function action;
+  final VoidCallback action;
   const WideButton({Key? key, required this.title, required this.action}) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class WideButton extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   primary: ThemeColors.mint400,
                 ),
-                onPressed: () => action,
+                onPressed: action,
                 child: Text(title,
                     style: textTheme.button
                         ?.merge(TextStyle(color: ThemeColors.white))),

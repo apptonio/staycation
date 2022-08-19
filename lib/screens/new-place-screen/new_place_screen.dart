@@ -95,7 +95,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                         SnackBar(
                           content: editScreen
                               ? Text(
-                                  'Edited listing ${editAccommodation.id}')
+                                  'Edited listing ${editAccommodation.title}')
                               : Text(
                                   'Added new listing ${_formKey.currentState?.fields['title']?.value}'),
                           behavior: SnackBarBehavior.floating,
@@ -252,7 +252,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             keyboardType: TextInputType.number,
-                            //controller: _categorizationController,
+                          
                             name: 'categorization',
                             decoration: InputDecoration(
                               labelText: 'Categorization (Number of stars)',
@@ -289,11 +289,11 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                             },
                             items: const [
                               DropdownMenuItem(
-                                value: 'Apartment',
+                                value: 'apartment',
                                 child: Text('Apartment'),
                               ),
                               DropdownMenuItem(
-                                value: 'Room',
+                                value: 'room',
                                 child: Text('Room'),
                               ),
                             ],
@@ -308,7 +308,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                            //controller: _capacityController,
+                            
                             focusNode: _capacityFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -346,7 +346,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                            //controller: _priceController,
+                            
                             focusNode: _priceFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =

@@ -1,4 +1,5 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
+import 'package:devcademy_flutter/providers/homes_guests_love_arguments.dart';
 import 'package:devcademy_flutter/providers/location_filter_arguments.dart';
 import 'package:devcademy_flutter/shared/widgets/horizontal_card.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
@@ -18,10 +19,24 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocationFilterArguments? arguments =
-        ModalRoute.of(context)?.settings.arguments as LocationFilterArguments?;
+    final filter;
 
-    Location? location = arguments?.location;
+    final receivedData = ModalRoute.of(context)!.settings.arguments;
+
+    if (receivedData is Map) {
+      filter =
+          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    } else {
+      filter = ModalRoute.of(context)!.settings.arguments as Location;
+    }
+
+    // final LocationFilterArguments? arguments =
+    //     ModalRoute?.of(context)?.settings.arguments as LocationFilterArguments?;
+    // Location? location = arguments?.location;
+
+    // final HomesGuestsLoveArguments? searchArgs =
+    //     ModalRoute.of(context)?.settings.arguments as HomesGuestsLoveArguments?;
+    // Map<String, dynamic>? searchParams = searchArgs?.searchParams;
 
     return Scaffold(
         appBar: MyAppBar(
@@ -45,7 +60,7 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                       }
                       List<Accommodation> accommodations = snapshot.data;
 
-                      String? accommodationLocation = location?.locationName;
+                      String? accommodationLocation = filter?.locationName;
 
                       if (accommodationLocation != null) {
                         accommodations = accommodations
@@ -53,6 +68,16 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                                 element.location == accommodationLocation)
                             .toList();
                       }
+
+                      String searchString = filter?['searchString'];
+
+                      if(receivedData != null){
+                        accommodations = accommodations
+                            .where((element) =>
+                                element.title.contains(searchString))
+                            .toList();
+                      }
+
                       return ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),

@@ -35,7 +35,9 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
         Visibility(
             visible: showSearchIcon ? true : false,
             child: IconButton(
-                onPressed: () {}, icon: SvgPicture.asset(Assets.icons.search))),
+                onPressed: () {
+                  router.navigateTo(context, Routes.searchScreen);
+                }, icon: SvgPicture.asset(Assets.icons.search))),
         IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icons.more))
       ],
       backgroundColor: ThemeColors.white,
