@@ -15,9 +15,6 @@ class NewPlaceScreen extends StatefulWidget {
 }
 
 class _NewPlaceScreenState extends State<NewPlaceScreen> {
-
-  
-
   final _formKey = GlobalKey<FormBuilderState>();
 
   final _listingNameFocusNode = FocusNode();
@@ -30,9 +27,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
   final _postalCodeFocusNode = FocusNode();
   final _imageUrlFocusNode = FocusNode();
 
-  final _priceController = TextEditingController();
-  final _categorizationController = TextEditingController();
-  final _capacityController = TextEditingController();
 
   @override
   void dispose() {
@@ -63,36 +57,39 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                   final validationCheck = _formKey.currentState?.validate();
 
                   if (validationCheck != null && validationCheck) {
-                    int price = int.parse(_priceController.text);
-                    int categorization =
-                        int.parse(_categorizationController.text);
-                    int capacity = int.parse(_capacityController.text);
 
-                    Map<String, dynamic> accommodation = {
-                      'title': _formKey.currentState?.fields['title']?.value,
-                      'location':
-                          _formKey.currentState?.fields['location']?.value,
-                      'imageUrl':
-                          _formKey.currentState?.fields['imageUrl']?.value,
-                      'price': price,
-                      'categorization': categorization,
-                      'longDescription': _formKey
-                          .currentState?.fields['longDescription']?.value,
-                      'shortDescription': _formKey
-                          .currentState?.fields['shortDescription']?.value,
-                      'capacity': capacity,
-                      'postalCode':
-                          _formKey.currentState?.fields['postalCode']?.value,
-                      'freeCancelation': _formKey
-                          .currentState?.fields['freeCancelation']?.value,
-                      'accommodationType': _formKey
-                          .currentState?.fields['accommodationType']?.value,
-                    };
+                    Accommodation accommodation = Accommodation(
+                        id: '',
+                        imageUrl:
+                            _formKey.currentState?.fields['imageUrl']?.value,
+                        title: _formKey.currentState?.fields['title']?.value,
+                        shortDescription: _formKey
+                            .currentState?.fields['shortDescription']?.value,
+                        longDescription: _formKey
+                            .currentState?.fields['longDescription']?.value,
+                        location:
+                            _formKey.currentState?.fields['location']?.value,
+                        postalCode:
+                            _formKey.currentState?.fields['postalCode']?.value,
+                        price: int.parse(
+                            _formKey.currentState?.fields['price']?.value),
+                        categorization: int.parse(_formKey
+                            .currentState?.fields['categorization']?.value),
+                        capacity: int.parse(
+                            _formKey.currentState?.fields['capacity']?.value),
+                        accommodationType: _formKey
+                            .currentState?.fields['accommodationType']?.value,
+                        freeCancelation: _formKey
+                            .currentState?.fields['freeCancelation']?.value);
+
 
                     _formKey.currentState?.save();
                     FocusScope.of(context).unfocus();
 
-                    //TODO ako ima akomodejtn onda edit radi
+                    // if(editAccommodation!=null) {
+                    //   http.editPlace(accommodation)
+                    // }
+
                     http.addNewPlace(accommodation);
                     Future.delayed(const Duration(milliseconds: 1000), () {
                       router.navigateTo(context, Routes.myPlacesScreen);
@@ -127,6 +124,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'title',
+                            
                             decoration: InputDecoration(
                               labelText: 'Listing name',
                               labelStyle: TextStyle(
@@ -151,6 +149,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
+                           
                             focusNode: _shortDescFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -195,6 +194,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'longDescription',
+                            
                             decoration: InputDecoration(
                               labelText: 'Long description',
                               labelStyle: TextStyle(
@@ -231,7 +231,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             keyboardType: TextInputType.number,
-                            controller: _categorizationController,
+                            //controller: _categorizationController,
                             name: 'categorization',
                             decoration: InputDecoration(
                               labelText: 'Categorization (Number of stars)',
@@ -277,6 +277,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               ),
                             ],
                             name: 'accommodationType',
+                        
+                        
                             decoration: InputDecoration(
                               labelText: 'Accommodation type',
                               labelStyle: TextStyle(color: ThemeColors.gray500),
@@ -287,7 +289,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                            controller: _capacityController,
+                            //controller: _capacityController,
                             focusNode: _capacityFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -298,6 +300,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'capacity',
+                            
+                            
                             decoration: InputDecoration(
                               labelText: 'Capacity',
                               labelStyle: TextStyle(
@@ -324,7 +328,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                            controller: _priceController,
+                            //controller: _priceController,
                             focusNode: _priceFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -335,6 +339,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'price',
+                          
                             decoration: InputDecoration(
                               labelText: 'Price',
                               labelStyle: TextStyle(
@@ -374,6 +379,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                   }
                                 },
                                 name: 'location',
+                                
+                                
                                 decoration: InputDecoration(
                                   labelText: 'Location',
                                   labelStyle: TextStyle(
@@ -409,6 +416,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                                   }
                                 },
                                 name: 'postalCode',
+                                
+                                
                                 decoration: InputDecoration(
                                   labelText: 'Postal code',
                                   labelStyle: TextStyle(
@@ -445,6 +454,7 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'imageUrl',
+                        
                             decoration: InputDecoration(
                               labelText: 'Listing image URL',
                               labelStyle: TextStyle(
@@ -466,7 +476,8 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           FormBuilderSwitch(
                             name: 'freeCancelation',
-                            initialValue: false,
+                            
+                          
                             title: Text('Free cancellation available',
                                 style: textTheme.bodyText1),
                             decoration:

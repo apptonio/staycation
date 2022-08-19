@@ -81,10 +81,10 @@ class HTTP {
         .toList();
   }
 
-  Future<Response> addNewPlace(Map<String, dynamic> map) {
+  Future<Response> addNewPlace(Accommodation accommodation) {
     return client.post(
       'myplaces',
-      data: map,
+      data: accommodation,
     );
   }
 
