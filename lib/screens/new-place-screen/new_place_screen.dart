@@ -79,8 +79,9 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                             _formKey.currentState?.fields['capacity']?.value),
                         accommodationType: _formKey
                             .currentState?.fields['accommodationType']?.value,
-                        freeCancelation: _formKey
-                            .currentState?.fields['freeCancelation']?.value);
+                        freeCancelation: _formKey.currentState
+                                ?.fields['freeCancelation']?.value ??
+                            false);
 
                     _formKey.currentState?.save();
                     FocusScope.of(context).unfocus();
@@ -252,7 +253,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             keyboardType: TextInputType.number,
-                          
                             name: 'categorization',
                             decoration: InputDecoration(
                               labelText: 'Categorization (Number of stars)',
@@ -308,7 +308,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                            
                             focusNode: _capacityFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -319,7 +318,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'capacity',
-
                             decoration: InputDecoration(
                               labelText: 'Capacity',
                               labelStyle: TextStyle(
@@ -346,7 +344,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                           ),
                           const SizedBox(height: 20),
                           FormBuilderTextField(
-                            
                             focusNode: _priceFocusNode,
                             onTap: () {
                               FocusScopeNode currentFocus =
@@ -357,7 +354,6 @@ class _NewPlaceScreenState extends State<NewPlaceScreen> {
                               }
                             },
                             name: 'price',
-
                             decoration: InputDecoration(
                               labelText: 'Price',
                               labelStyle: TextStyle(

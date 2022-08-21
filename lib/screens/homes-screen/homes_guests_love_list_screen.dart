@@ -1,13 +1,10 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/providers/homes_guests_love_arguments.dart';
-import 'package:devcademy_flutter/providers/location_filter_arguments.dart';
 import 'package:devcademy_flutter/shared/widgets/horizontal_card.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/price_info.dart';
 import 'package:flutter/material.dart';
-
 import '../../http.dart';
-import '../../models/location.dart';
 import '../../router.dart';
 import '../../shared/widgets/app_bar.dart';
 import '../../theme.dart';
@@ -19,30 +16,22 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filter;
+    String? filter;
 
-    final receivedData = ModalRoute.of(context)!.settings.arguments;
+    if (ModalRoute.of(context)!.settings.arguments != null) {
+      HomesGuestsLoveListScreenArgumments? argumments = ModalRoute.of(context)!
+          .settings
+          .arguments as HomesGuestsLoveListScreenArgumments;
 
-    if (receivedData is Map) {
-      filter =
-          ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    } else {
-      filter = ModalRoute.of(context)!.settings.arguments as Location;
+      filter = argumments.filter;
     }
-
-    // final LocationFilterArguments? arguments =
-    //     ModalRoute?.of(context)?.settings.arguments as LocationFilterArguments?;
-    // Location? location = arguments?.location;
-
-    // final HomesGuestsLoveArguments? searchArgs =
-    //     ModalRoute.of(context)?.settings.arguments as HomesGuestsLoveArguments?;
-    // Map<String, dynamic>? searchParams = searchArgs?.searchParams;
 
     return Scaffold(
         appBar: MyAppBar(
-            title: "Homes Guests Love",
-            showBackIcon: true,
-            showSearchIcon: true),
+          title: "Homes Guests Love",
+          showBackIcon: true,
+          showSearchIcon: true,
+        ),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(
@@ -60,24 +49,13 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                       }
                       List<Accommodation> accommodations = snapshot.data;
 
-                      String? accommodationLocation = filter?.locationName;
-
-                      if (accommodationLocation != null) {
+                      if (filter != null) {
                         accommodations = accommodations
-                            .where((element) =>
-                                element.location == accommodationLocation)
+                            .where((element) => element.title
+                                .toLowerCase()
+                                .contains(filter!.toLowerCase()))
                             .toList();
                       }
-
-                      String searchString = filter?['searchString'];
-
-                      if(receivedData != null){
-                        accommodations = accommodations
-                            .where((element) =>
-                                element.title.contains(searchString))
-                            .toList();
-                      }
-
                       return ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),

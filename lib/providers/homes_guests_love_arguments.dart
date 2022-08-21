@@ -1,6 +1,4 @@
-class HomesGuestsLoveArguments {
-  
-  final Map<String, dynamic> searchParams;
-
-  HomesGuestsLoveArguments({required this.searchParams});
+class HomesGuestsLoveListScreenArgumments {
+  final String filter;
+  HomesGuestsLoveListScreenArgumments({required this.filter});
 }

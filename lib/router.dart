@@ -2,6 +2,7 @@ import 'package:devcademy_flutter/models/location.dart';
 import 'package:devcademy_flutter/providers/home_details_arguments.dart';
 import 'package:devcademy_flutter/providers/homes_guests_love_arguments.dart';
 import 'package:devcademy_flutter/screens/home-screen/widgets/homes_guests_love.dart';
+import 'package:devcademy_flutter/screens/homes-screen/homes_guests_love_list_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'models/accommodation.dart';
@@ -19,7 +20,7 @@ class Routes {
 }
 
 class Router {
-  void goBack(BuildContext context){
+  void goBack(BuildContext context) {
     return Navigator.pop(context);
   }
 
@@ -32,18 +33,15 @@ class Router {
     return Navigator.pushNamed(
       context,
       Routes.homeDetailsScreen,
-      arguments:
-          HomeDetailsArguments(accommodation: accommodation),
+      arguments: HomeDetailsArguments(accommodation: accommodation),
     );
   }
 
-  Future<void> toLocationHomesScreen(
-      BuildContext context, Location location) {
+  Future<void> toLocationHomesScreen(BuildContext context, Location location) {
     return Navigator.pushNamed(
       context,
       Routes.homesGuestsLoveListScreen,
-      arguments:
-          LocationFilterArguments(location: location),
+      arguments: LocationFilterArguments(location: location),
     );
   }
 
@@ -52,22 +50,18 @@ class Router {
     return Navigator.pushNamed(
       context,
       Routes.newPlaceScreen,
-      arguments:
-          HomeDetailsArguments(accommodation: accommodation),
+      arguments: HomeDetailsArguments(accommodation: accommodation),
     );
   }
 
   Future<void> toHomesGuestsLoveScreen(
-      BuildContext context, Map<String, dynamic> searchParams) {
+      BuildContext context, HomesGuestsLoveListScreenArgumments searchParams) {
     return Navigator.pushNamed(
       context,
       Routes.homesGuestsLoveListScreen,
-      arguments:
-          HomesGuestsLoveArguments(searchParams: searchParams),
+      arguments: searchParams,
     );
   }
 }
-
-
 
 Router router = Router();
