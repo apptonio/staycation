@@ -1,43 +1,24 @@
+import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../assets.dart';
-import '../../../shared/widgets/stars_bar_widget.dart';
+import '../../../shared/widgets/stars_bar.dart';
 import '../../../theme.dart';
 
 class DetailsSheet extends StatelessWidget {
-  const DetailsSheet(
-      {Key? key,
-      required this.id,
-      required this.title,
-      required this.shortDescription,
-      required this.longDescription,
-      required this.location,
-      required this.postalCode,
-      required this.price,
-      required this.categorization,
-      required this.capacity,
-      required this.accommodationType,
-      required this.freeCancelation})
-      : super(key: key);
+  const DetailsSheet({
+    Key? key,
+    required this.accommodation,
+  }) : super(key: key);
 
-  final String id;
-  final String title;
-  final String shortDescription;
-  final String longDescription;
-  final String location;
-  final String postalCode;
-  final int price;
-  final int categorization;
-  final int capacity;
-  final String accommodationType;
-  final bool freeCancelation;
+  final Accommodation accommodation;
 
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       initialChildSize: 0.7,
-      maxChildSize: 0.95,
+      maxChildSize: 1,
       minChildSize: 0.7,
       builder: (context, scrollController) {
         return SingleChildScrollView(
@@ -63,19 +44,19 @@ class DetailsSheet extends StatelessWidget {
                     )),
                     const SizedBox(height: 20.0),
                     Text(
-                      title,
+                      accommodation.title,
                       style: textTheme.headline6!
                           .merge(const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     const SizedBox(height: 12.0),
-                    StarsBar(categorization: categorization),
+                    StarsBar(categorization: accommodation.categorization),
                     const SizedBox(height: 12.0),
-                    Text(shortDescription,
+                    Text(accommodation.shortDescription,
                         style: textTheme.bodyText2!.merge(TextStyle(
                             color: ThemeColors.gray500, height: 1.5))),
                     const SizedBox(height: 16.0),
                     Visibility(
-                        visible: freeCancelation ? true : false,
+                        visible: accommodation.freeCancelation ? true : false,
                         child: Row(
                           children: [
                             SvgPicture.asset(
@@ -95,7 +76,7 @@ class DetailsSheet extends StatelessWidget {
                         )),
                     const SizedBox(height: 20.0),
                     Text(
-                      longDescription,
+                      accommodation.longDescription,
                       style: textTheme.bodyText1!.merge(
                           TextStyle(height: 1.5, color: ThemeColors.teal800)),
                     ),
@@ -107,31 +88,31 @@ class DetailsSheet extends StatelessWidget {
                     ),
                     const SizedBox(height: 20.0),
                     Text(
-                      '$capacity guests',
+                      '${accommodation.capacity} guests',
                       style: textTheme.bodyText1!
                           .merge(TextStyle(color: ThemeColors.teal800)),
                     ),
                     const SizedBox(height: 10.0),
                     Text(
-                      accommodationType,
+                      accommodation.accommodationType,
                       style: textTheme.bodyText1!
                           .merge(TextStyle(color: ThemeColors.teal800)),
                     ),
                     const SizedBox(height: 10.0),
                     Text(
-                      'EUR $price per night',
+                      'EUR ${accommodation.price} per night',
                       style: textTheme.bodyText1!
                           .merge(TextStyle(color: ThemeColors.teal800)),
                     ),
                     const SizedBox(height: 10.0),
                     Text(
-                      location,
+                      accommodation.location,
                       style: textTheme.bodyText1!
                           .merge(TextStyle(color: ThemeColors.teal800)),
                     ),
                     const SizedBox(height: 10.0),
                     Text(
-                      postalCode,
+                      accommodation.postalCode,
                       style: textTheme.bodyText1!
                           .merge(TextStyle(color: ThemeColors.teal800)),
                     ),

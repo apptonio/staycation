@@ -21,14 +21,20 @@ class MyBottomNav extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.icons.list, color: index == 1 ? ThemeColors.mint500 : ThemeColors.gray500,), label: 'My Bookings'),
+            icon: SvgPicture.asset(
+              Assets.icons.list,
+              color: index == 1 ? ThemeColors.mint500 : ThemeColors.gray500,
+            ),
+            label: 'My Bookings'),
         BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.icons.places, color: index == 2 ? ThemeColors.mint500 : ThemeColors.gray500,), label: 'My Places'),
+            icon: SvgPicture.asset(
+              Assets.icons.places,
+              color: index == 2 ? ThemeColors.mint500 : ThemeColors.gray500,
+            ),
+            label: 'My Places'),
       ],
       selectedItemColor: ThemeColors.mint500,
       unselectedItemColor: ThemeColors.gray500,
-      // doesn't work for some reason so I had to use Bools
-      //selectedIconTheme: IconThemeData(color: ThemeColors.mint500),
       onTap: (int currentIndex) {
         if (index == currentIndex) {
         } else {

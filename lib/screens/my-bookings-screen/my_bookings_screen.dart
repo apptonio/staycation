@@ -1,13 +1,13 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/models/reservation.dart';
-import 'package:devcademy_flutter/screens/homes-screen/widgets/horizontal_card_widget.dart';
+import 'package:devcademy_flutter/shared/widgets/horizontal_card.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/date_info.dart';
 import 'package:flutter/material.dart';
 
 import '../../http.dart';
-import '../../shared/widgets/app_bar_widget.dart';
-import '../../shared/widgets/bottom_nav_widget.dart';
+import '../../shared/widgets/app_bar.dart';
+import '../../shared/widgets/bottom_nav.dart';
 import '../../theme.dart';
 
 class MyBookingsScreen extends StatelessWidget {
@@ -18,7 +18,7 @@ class MyBookingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("My Bookings", false, false),
+        appBar: MyAppBar(title: "My Bookings", showBackIcon: false, showSearchIcon: false),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: SingleChildScrollView(

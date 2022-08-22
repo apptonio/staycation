@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../http.dart';
 import '../../models/location.dart';
 import '../../router.dart';
-import '../../shared/widgets/app_bar_widget.dart';
-import '../../shared/widgets/stack_widget.dart';
+import '../../shared/widgets/app_bar.dart';
+import '../../shared/widgets/location_stack.dart';
 import '../../theme.dart';
 
 class PopularLocationsListScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class PopularLocationsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar("Popular Locations", true, true),
+      appBar: MyAppBar(title: "Popular Locations", showBackIcon: true, showSearchIcon: true),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SingleChildScrollView(

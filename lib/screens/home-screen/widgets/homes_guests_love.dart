@@ -4,7 +4,7 @@ import 'package:devcademy_flutter/router.dart';
 import '../../../http.dart';
 import '../../../theme.dart';
 import 'package:flutter/material.dart';
-import 'card_widget.dart';
+import 'home_card.dart';
 
 class HomesGuestsLove extends StatelessWidget {
   const HomesGuestsLove({

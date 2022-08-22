@@ -80,6 +80,23 @@ class HTTP {
         .map<Accommodation>((json) => Accommodation.fromJson(json))
         .toList();
   }
+
+  Future<Response> addNewPlace(Accommodation accommodation) {
+    return client.post(
+      'myplaces',
+      data: accommodation,
+    );
+  }
+
+  Future<Accommodation> editPlace(Accommodation accommodation) async {
+    Response response =
+        await client.put('myplaces/${accommodation.id}', data: accommodation);
+    return Accommodation.fromJson(response.data);
+  }
+
+  Future<Response> deletePlace(String accommodationId) {
+    return client.delete('myplaces/$accommodationId');
+  }
 }
 
 final http = HTTP();

@@ -23,7 +23,7 @@ class HomeCard extends StatelessWidget {
                 AccommodationInfo(
                     title: accommodation.title,
                     location: accommodation.location,
-                    specialData: AccommodationPrice(price: accommodation.price),
+                    specialData: Price(price: accommodation.price),
                     categorization: accommodation.categorization)
               ],
             )));

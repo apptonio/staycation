@@ -1,10 +1,10 @@
-import 'package:devcademy_flutter/shared/widgets/bottom_nav_widget.dart';
+import 'package:devcademy_flutter/shared/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 import '../../router.dart';
 import './widgets/popular_locations.dart';
 import './widgets/homes_guests_love.dart';
-import '../../shared/widgets/app_bar_widget.dart';
+import '../../shared/widgets/app_bar.dart';
 import 'widgets/section_title_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("Staycation", false, true),
+        appBar: MyAppBar(title: "Staycation", showBackIcon: false, showSearchIcon: true),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: SingleChildScrollView(

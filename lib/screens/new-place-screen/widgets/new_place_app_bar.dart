@@ -4,34 +4,36 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:devcademy_flutter/assets.dart';
 import 'package:devcademy_flutter/theme.dart';
 
-class MyAppBar extends StatelessWidget with PreferredSizeWidget {
+class NewPlaceAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
   final String title;
-  final bool showBackIcon;
-  final bool showSearchIcon;
+  final VoidCallback action;
 
-  MyAppBar(this.title, this.showBackIcon, this.showSearchIcon, {Key? key})
+  NewPlaceAppBar({required this.title, required this.action, Key? key})
       : preferredSize = const Size.fromHeight(50.0),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leadingWidth: showBackIcon ? 50 : 0,
-      leading: Visibility(
-          visible: showBackIcon ? true : false,
-          child: IconButton(
-              onPressed: () => router.goBack(context), icon: SvgPicture.asset(Assets.icons.back))),
+      leadingWidth: 50,
+      leading: IconButton(
+          onPressed: () => router.goBack(context),
+          icon: SvgPicture.asset(Assets.icons.close)),
       title: Text(title,
           style: textTheme.headline6!
               .merge(TextStyle(color: ThemeColors.teal800))),
+      centerTitle: false,
       actions: [
-        Visibility(
-            visible: showSearchIcon ? true : false,
-            child: IconButton(
-                onPressed: () {}, icon: SvgPicture.asset(Assets.icons.search))),
-        IconButton(onPressed: () {}, icon: SvgPicture.asset(Assets.icons.more))
+        TextButton(
+          onPressed: 
+            action
+          ,
+          child: Text("SAVE",
+              style: textTheme.button!
+                  .merge(TextStyle(color: ThemeColors.teal800))),
+        ),
       ],
       backgroundColor: ThemeColors.white,
       foregroundColor: ThemeColors.teal800,
