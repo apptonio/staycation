@@ -1,10 +1,12 @@
 import 'package:devcademy_flutter/models/accommodation.dart';
 import 'package:devcademy_flutter/providers/homes_guests_love_arguments.dart';
+import 'package:devcademy_flutter/providers/location_filter_arguments.dart';
 import 'package:devcademy_flutter/shared/widgets/horizontal_card.dart';
 import 'package:devcademy_flutter/shared/widgets/accommodation_info.dart';
 import 'package:devcademy_flutter/shared/widgets/price_info.dart';
 import 'package:flutter/material.dart';
 import '../../http.dart';
+import '../../models/location.dart';
 import '../../router.dart';
 import '../../shared/widgets/app_bar.dart';
 import '../../theme.dart';
@@ -17,13 +19,23 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? filter;
+    Location? filter2;
 
-    if (ModalRoute.of(context)!.settings.arguments != null) {
+    if (ModalRoute.of(context)!.settings.arguments
+        is HomesGuestsLoveListScreenArgumments) {
       HomesGuestsLoveListScreenArgumments? argumments = ModalRoute.of(context)!
           .settings
           .arguments as HomesGuestsLoveListScreenArgumments;
 
       filter = argumments.filter;
+    }
+
+    if (ModalRoute.of(context)!.settings.arguments is LocationFilterArguments) {
+      LocationFilterArguments? locationFilter = ModalRoute?.of(context)
+          ?.settings
+          .arguments as LocationFilterArguments?;
+
+      filter2 = locationFilter?.location;
     }
 
     return Scaffold(
@@ -56,6 +68,13 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
                                 .contains(filter!.toLowerCase()))
                             .toList();
                       }
+
+                      if (filter2 != null) {
+                        accommodations = accommodations
+                            .where((element) => element.location == filter2?.locationName)
+                            .toList();
+                      }
+
                       return ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
