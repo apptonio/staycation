@@ -162,14 +162,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                             WideButton(
                                                 title: 'LOG IN',
                                                 action: () async {
-                                                  UserCredential userCredential;
                                                   final validationCheck =
                                                       _formKey.currentState
                                                           ?.validate();
                                                   if (validationCheck != null &&
                                                       validationCheck) {
                                                     try {
-                                                      userCredential = await _auth
+                                                      await _auth
                                                           .signInWithEmailAndPassword(
                                                               email: _formKey
                                                                   .currentState
@@ -180,12 +179,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                   .currentState
                                                                   ?.fields[
                                                                       'password']
-                                                                  ?.value);
-                                                      router.navigateTo(context,
-                                                          Routes.homeScreen);
+                                                                  ?.value)
+                                                          .then((value) =>
+                                                              router.navigateTo(
+                                                                  (context),
+                                                                  Routes
+                                                                      .homeScreen));
                                                     } on PlatformException catch (err) {
                                                       var message =
-                                                          'An error occurred, please check your credentials';
+                                                          'An error occurred, please check your credentials.';
                                                       if (err.message != null) {
                                                         message = err.message!;
                                                       }
@@ -200,22 +202,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         margin: const EdgeInsets
                                                             .all(20.0),
                                                       ));
-                                                    } catch (err) {
-                                                      print(err);
                                                     }
                                                   }
                                                 }),
                                             WideButton(
                                                 title: 'SIGN IN',
                                                 action: () async {
-                                                  UserCredential userCredential;
                                                   final validationCheck =
                                                       _formKey.currentState
                                                           ?.validate();
                                                   if (validationCheck != null &&
                                                       validationCheck) {
                                                     try {
-                                                      userCredential = await _auth
+                                                      await _auth
                                                           .createUserWithEmailAndPassword(
                                                               email: _formKey
                                                                   .currentState
@@ -226,9 +225,44 @@ class _LoginScreenState extends State<LoginScreen> {
                                                                   .currentState
                                                                   ?.fields[
                                                                       'password']
-                                                                  ?.value);
-                                                      router.navigateTo(context,
-                                                          Routes.homeScreen);
+                                                                  ?.value)
+                                                          .then((value) =>
+                                                              router.navigateTo(
+                                                                  (context),
+                                                                  Routes
+                                                                      .homeScreen));
+                                                    } on FirebaseAuthException catch (e) {
+                                                      if (e.code ==
+                                                          'weak-password') {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                          content: Text(
+                                                              'Please provide a stronger password.'),
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  20.0),
+                                                        ));
+                                                      } else if (e.code ==
+                                                          'email-already-in-use') {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                          content: Text(
+                                                              'An account with this email already exists.'),
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
+                                                          margin:
+                                                              EdgeInsets.all(
+                                                                  20.0),
+                                                        ));
+                                                      }
                                                     } on PlatformException catch (err) {
                                                       var message =
                                                           'An error occurred, please check your credentials';
@@ -246,8 +280,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         margin: const EdgeInsets
                                                             .all(20.0),
                                                       ));
-                                                    } catch (err) {
-                                                      print(err);
                                                     }
                                                   }
                                                 })
@@ -255,23 +287,5 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ],
                                   ))),
                         ))))));
-  }
-}
-
-Future createUser() async {
-  try {
-    final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: 'mojmail@gmail.com',
-      password: '12345678',
-    );
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
-    } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
-    }
-  } catch (e) {
-    print(e);
   }
 }
