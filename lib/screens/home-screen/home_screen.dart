@@ -1,6 +1,4 @@
-
 import 'package:devcademy_flutter/shared/widgets/bottom_nav.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../router.dart';
@@ -22,14 +20,9 @@ class HomeScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    createUser();
-                  },
-                  child: SectionTitle(
-                      title: 'Popular locations',
-                      route: Routes.popularLocationsListScreen),
-                ),
+                SectionTitle(
+                    title: 'Popular locations',
+                    route: Routes.popularLocationsListScreen),
                 const PopularLocations(),
                 SectionTitle(
                     title: 'Homes guests love',
@@ -42,23 +35,5 @@ class HomeScreen extends StatelessWidget {
         bottomNavigationBar: const MyBottomNav(
           index: 0,
         ));
-  }
-}
-
-Future createUser() async {
-  try {
-    final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: 'mojmail@gmail.com',
-      password: '12345678',
-    );
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
-    } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
-    }
-  } catch (e) {
-    print(e);
   }
 }

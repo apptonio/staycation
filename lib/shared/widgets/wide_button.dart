@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../theme.dart';
 
 class WideButton extends StatelessWidget {
-
   final String title;
   final VoidCallback action;
-  const WideButton({Key? key, required this.title, required this.action}) : super(key: key);
+  const WideButton({Key? key, required this.title, required this.action})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class WideButton extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: ThemeColors.mint400,
+                  backgroundColor: ThemeColors.mint400,
                 ),
                 onPressed: action,
                 child: Text(title,

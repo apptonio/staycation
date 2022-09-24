@@ -111,8 +111,8 @@ ThemeData theme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      primary: ThemeColors.mint400, // background (button) color
-      onPrimary: ThemeColors.white, // foreground (text) color
+      backgroundColor: ThemeColors.mint400, // background (button) color
+      foregroundColor: ThemeColors.white, // foreground (text) color
       textStyle: textTheme.button,
     ),
   ),
