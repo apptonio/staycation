@@ -205,6 +205,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     }
                                                   }
                                                 }),
+
+                                               const SizedBox(height: 20,),
                                             WideButton(
                                                 title: 'SIGN IN',
                                                 action: () async {

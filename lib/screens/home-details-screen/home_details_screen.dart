@@ -41,7 +41,10 @@ class HomeDetailsScreen extends StatelessWidget {
               DetailsSheet(accommodation: accommodation),
               Align(
                   alignment: AlignmentDirectional.bottomCenter,
-                  child: WideButton(title: "BOOK YOUR STAY", action: () {}))
+                  child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child:
+                          WideButton(title: "BOOK YOUR STAY", action: () {})))
             ],
           ),
         )));
