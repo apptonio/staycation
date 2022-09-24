@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "717649924528",
+    "project_id": "staycation-82a1f",
+    "storage_bucket": "staycation-82a1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717649924528:android:c6244ed7f35a165bef4675",
+        "android_client_info": {
+          "package_name": "com.example.devcademy2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717649924528-0ndfqnq4ai017juk9gi1mc4eltlg45h5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADQq4MPclKpUDI_KaPblP2Px7EtWDPQXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717649924528-0ndfqnq4ai017juk9gi1mc4eltlg45h5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "717649924528-21t71trqvufge41bc9et53mujamap95p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.devcademy2022"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

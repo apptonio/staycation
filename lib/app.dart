@@ -1,5 +1,6 @@
 import 'package:devcademy_flutter/router.dart';
 import 'package:devcademy_flutter/screens/home-screen/home_screen.dart';
+import 'package:devcademy_flutter/screens/login-screen/login_screen.dart';
 import 'package:devcademy_flutter/screens/my-bookings-screen/my_bookings_screen.dart';
 import 'package:devcademy_flutter/screens/my-places-screen/my_places_screen.dart';
 import 'package:devcademy_flutter/screens/new-place-screen/new_place_screen.dart';
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: theme,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.homeScreen,
+      initialRoute: Routes.loginScreen,
       routes: {
         Routes.homeScreen: (context) => const HomeScreen(),
         Routes.popularLocationsListScreen: (context) =>
@@ -32,7 +33,9 @@ class App extends StatelessWidget {
         Routes.myBookingsScreen: ((context) => const MyBookingsScreen()),
         Routes.myPlacesScreen: (context) => const MyPlacesScreen(),
         Routes.newPlaceScreen: (context) => const NewPlaceScreen(),
-        Routes.searchScreen: (context) => const SearchScreen()
+        Routes.searchScreen: (context) => const SearchScreen(),
+        Routes.loginScreen: (context) => const LoginScreen(),
+
       },
       supportedLocales: [...FormBuilderLocalizations.delegate.supportedLocales],
       localizationsDelegates: const [

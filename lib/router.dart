@@ -1,8 +1,6 @@
 import 'package:devcademy_flutter/models/location.dart';
 import 'package:devcademy_flutter/providers/home_details_arguments.dart';
 import 'package:devcademy_flutter/providers/homes_guests_love_arguments.dart';
-import 'package:devcademy_flutter/screens/home-screen/widgets/homes_guests_love.dart';
-import 'package:devcademy_flutter/screens/homes-screen/homes_guests_love_list_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'models/accommodation.dart';
@@ -17,6 +15,7 @@ class Routes {
   static String myPlacesScreen = 'myPlacesScreen';
   static String newPlaceScreen = 'newPlaceScreen';
   static String searchScreen = 'searchScreen';
+  static String loginScreen = 'loginScreen';
 }
 
 class Router {

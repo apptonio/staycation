@@ -31,7 +31,7 @@ class HomesGuestsLoveListScreen extends StatelessWidget {
     }
 
     if (ModalRoute.of(context)!.settings.arguments is LocationFilterArguments) {
-      LocationFilterArguments? locationFilter = ModalRoute?.of(context)
+      LocationFilterArguments? locationFilter = ModalRoute.of(context)
           ?.settings
           .arguments as LocationFilterArguments?;
 
