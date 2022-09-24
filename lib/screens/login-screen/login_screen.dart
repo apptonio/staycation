@@ -205,8 +205,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     }
                                                   }
                                                 }),
-
-                                               const SizedBox(height: 20,),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Divider(color: ThemeColors.gray500, indent: 40, endIndent: 40,),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
                                             WideButton(
                                                 title: 'SIGN IN',
                                                 action: () async {
