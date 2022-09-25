@@ -1,4 +1,4 @@
-<h3 align="center">Staycation</h3>
+<h2 align="center">Staycation</h2>
 <p align="center"> A Flutter app for booking your stay.
   <br> 
 </p>  
@@ -6,15 +6,15 @@
 ---
 
 <p float="left" align="center">
-  <img width=130px height=280px src="https://user-images.githubusercontent.com/60735023/192142648-d7fb520f-d321-4957-b089-b2e0472aa8be.png" alt="Screenshot 1">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-  <img width=130px height=280px src="https://user-images.githubusercontent.com/60735023/192143496-c17a7b49-1a00-473b-818d-5e3b048d7b37.png" alt="Screenshot 2">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-  <img width=130px height=280px src="https://user-images.githubusercontent.com/60735023/192143498-9dbe578f-a707-423d-913d-6e51ccf7829d.png" alt="Screenshot 3">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-  <img width=130px height=280px src="https://user-images.githubusercontent.com/60735023/192143500-2b1ec7dc-f4d4-43e3-9dc4-a8818e820613.png" alt="Screenshot 4">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-  <img width=130px height=280px src="https://user-images.githubusercontent.com/60735023/192143504-a338db6d-3a32-4f3a-8ded-cc2c9ab96fa0.png" alt="Screenshot 5">
+  <img width=18%  src="https://user-images.githubusercontent.com/60735023/192142648-d7fb520f-d321-4957-b089-b2e0472aa8be.png" alt="Screenshot 1">
+  
+  <img width=18%  src="https://user-images.githubusercontent.com/60735023/192143496-c17a7b49-1a00-473b-818d-5e3b048d7b37.png" alt="Screenshot 2">
+ 
+  <img width=18%   src="https://user-images.githubusercontent.com/60735023/192143498-9dbe578f-a707-423d-913d-6e51ccf7829d.png" alt="Screenshot 3">
+
+  <img width=18%  src="https://user-images.githubusercontent.com/60735023/192143500-2b1ec7dc-f4d4-43e3-9dc4-a8818e820613.png" alt="Screenshot 4">
+  
+  <img width=18%  src="https://user-images.githubusercontent.com/60735023/192143504-a338db6d-3a32-4f3a-8ded-cc2c9ab96fa0.png" alt="Screenshot 5">
 </p>
 
 
